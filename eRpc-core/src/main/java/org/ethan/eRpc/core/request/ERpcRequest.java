@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ERpcRequest implements Serializable{
+public class ERpcRequest implements Serializable{
 	
 	/**
 	 * 
@@ -14,7 +14,7 @@ public abstract class ERpcRequest implements Serializable{
 	private Header header;
 	
 	/**
-	 * 响应
+	 * 请求体
 	 */
 	private String body;
 	
@@ -23,7 +23,7 @@ public abstract class ERpcRequest implements Serializable{
 	 */
 	private Map<String,Object>attachment = new HashMap<String, Object>();
 	
-	public class Header {
+	public static class Header {
 		/**
 		 * 消费者IP
 		 */
@@ -32,7 +32,9 @@ public abstract class ERpcRequest implements Serializable{
 		/**
 		 * 调用的接口名
 		 */
-		private String interfaceName;
+		private String serviceName;
+		
+		private String version;
 
 		public String getServerIp() {
 			return serverIp;
@@ -42,12 +44,20 @@ public abstract class ERpcRequest implements Serializable{
 			this.serverIp = serverIp;
 		}
 
-		public String getInterfaceName() {
-			return interfaceName;
+		public String getServiceName() {
+			return serviceName;
 		}
 
-		public void setInterfaceName(String interfaceName) {
-			this.interfaceName = interfaceName;
+		public void setServiceName(String serviceName) {
+			this.serviceName = serviceName;
+		}
+
+		public String getVersion() {
+			return version;
+		}
+
+		public void setVersion(String version) {
+			this.version = version;
 		}
 	}
 

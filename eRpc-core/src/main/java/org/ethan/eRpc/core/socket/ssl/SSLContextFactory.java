@@ -8,9 +8,11 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
 import org.ethan.eRpc.core.util.PropertiesUtil;
+import org.springframework.stereotype.Service;
 
 import io.netty.util.internal.SystemPropertyUtil;
 
+@Service
 public class SSLContextFactory {
 	private static SSLContext SERVER_CONTEXT;
 	

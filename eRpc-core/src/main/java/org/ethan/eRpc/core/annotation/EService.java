@@ -20,4 +20,8 @@ public @interface EService {
 	 * @return
 	 */
 	String name();
+	
+	long timeOut() default 10000;
+	
+	String verion() default "1.0";
 }

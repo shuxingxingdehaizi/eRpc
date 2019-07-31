@@ -9,7 +9,7 @@ public class DefaultIndicator implements RouteIndicator{
 	@Override
 	public String getRouteIndicator(ERpcRequest request) {
 		// TODO Auto-generated method stub
-		return request.getHeader().getInterfaceName();
+		return request.getHeader().getServiceName();
 	}
 
 }

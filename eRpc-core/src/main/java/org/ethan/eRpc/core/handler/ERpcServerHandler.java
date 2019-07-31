@@ -6,18 +6,25 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import org.ethan.eRpc.core.context.ERpcRequestContext;
 import org.ethan.eRpc.core.context.SpringContextHolder;
+import org.ethan.eRpc.core.exporter.invoker.ERpcInvoker;
 import org.ethan.eRpc.core.filter.ERpcFilter;
+import org.ethan.eRpc.core.filter.ERpcFilterChain;
 import org.ethan.eRpc.core.request.ERpcRequest;
+import org.ethan.eRpc.core.response.ERpcResponse;
 import org.ethan.eRpc.core.route.ERpcRequestRouter;
 import org.ethan.eRpc.core.route.RouteIndicator;
+import org.ethan.eRpc.core.route.ServiceExporter;
 import org.ethan.eRpc.core.serialize.ERpcSerialize;
 import org.ethan.eRpc.core.serialize.ERpcSerializeException;
 import org.ethan.eRpc.core.util.PropertiesUtil;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import io.netty.buffer.ByteBuf;
@@ -27,13 +34,16 @@ import io.netty.channel.ChannelHandler.Sharable;
 
 @Component
 @Sharable
-public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements InitializingBean{
+public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements InitializingBean,ApplicationContextAware{
 	
 	@Autowired
 	private SpringContextHolder springContextHolder;
 	
 	@Autowired
 	private ERpcRequestRouter requestRouter;
+	
+	@Autowired
+	private ServiceExporter serviceExporter;
 	
 	private List<ERpcFilter>filters;
 	
@@ -42,6 +52,9 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	private ERpcSerialize serializer;
 	
 	private RouteIndicator routeIndicator;
+	
+	@Autowired
+	private ERpcInvoker invoker;
 	
 	
 	
@@ -66,41 +79,42 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		// TODO Auto-generated method stub
 		//1.读取请求,解码
-		Object request = this.requestDecorder.decord(msg);
+		ERpcRequest request = this.serializer.reqDeSerialize((ByteBuf)msg);
 		
-		ERpcRequest socketRequest = new ERpcRequest(msg,request);
 		
-		SocketResponse socketResponse = new SocketResponse(ctx.channel(), "UTF-8");
+		ERpcResponse response = new ERpcResponse();
 		
 		
 		//2.组装请求上下文
-		ERpcRequestContext requestContext = new ERpcRequestContext(ctx,socketRequest,socketResponse);
+		ERpcRequestContext requestContext = new ERpcRequestContext(springContext,ctx,serializer,request,response);
 		
-		//3.前置过滤器
-		if(this.filters != null && !this.filters.isEmpty()) {
-        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-            chain.doPreFilter(chain, requestContext);
-        }
+//		//3.前置过滤器
+//		if(this.filters != null && !this.filters.isEmpty()) {
+//        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+//            chain.doPreFilter(chain, requestContext);
+//        }
+//		
+//		//4.将请求路由至对应Controller,获取响应
+//		ERpcRequestRouter.ControllerMethod cm = requestRouter.getControllerMethod(this.routeIndicator.getRouteIndicator(socketRequest.getRequestMessage()));
+//		if(cm == null) {
+//			ctx.channel().writeAndFlush("No mapping found").sync();
+//			return;
+//		}
+//		Object response = cm.getMethod().invoke(cm.getControllerBean(), socketRequest.getRequestMessage());
+//		
+//		//5.后置过滤器
+//		socketResponse.setResponseMsg(response);
+//		
+//		ERpcRequestContext responseContext = new ERpcRequestContext(ctx, socketRequest, socketResponse);
+//		if(this.filters != null && !this.filters.isEmpty()) {
+//        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+//            chain.doAfterFilter(chain, responseContext);
+//        }
 		
-		//4.将请求路由至对应Controller,获取响应
-		ERpcRequestRouter.ControllerMethod cm = requestRouter.getControllerMethod(this.routeIndicator.getRouteIndicator(socketRequest.getRequestMessage()));
-		if(cm == null) {
-			ctx.channel().writeAndFlush("No mapping found").sync();
-			return;
-		}
-		Object response = cm.getMethod().invoke(cm.getControllerBean(), socketRequest.getRequestMessage());
-		
-		//5.后置过滤器
-		socketResponse.setResponseMsg(response);
-		
-		ERpcRequestContext responseContext = new ERpcRequestContext(ctx, socketRequest, socketResponse);
-		if(this.filters != null && !this.filters.isEmpty()) {
-        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-            chain.doAfterFilter(chain, responseContext);
-        }
+		invoker.invoke(requestContext);
 		
 		//6.响应编码
-		byte[] responseBytes = this.responseEncorder.encord(response);
+		byte[] responseBytes = this.serializer.respSerialize(requestContext.getResponse());
         
         //3.生成响应，发送至客户端
         ctx.channel().writeAndFlush(responseBytes).sync();
@@ -120,10 +134,10 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	    System.out.println("Error occurs when handle request:" + cause.getMessage());
 	}
 	
-	private void getSpringContext() {
-		springContext = springContextHolder.getSpringApplicationContext();
-	}
-	
+//	private void getSpringContext() {
+//		springContext = springContextHolder.getSpringApplicationContext();
+//	}
+//	
 	private void initFilterChain() {
         Map<String,ERpcFilter>filterMaps = springContext.getBeansOfType(ERpcFilter.class);
         if(filters != null && !filters.isEmpty()) {
@@ -150,7 +164,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
         }
 	}
 	
-	private void initDigister() {
+	private void initDigister() throws ERpcSerializeException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		String serializerClass = PropertiesUtil.getConfig("serializer");
 		if(serializerClass == null || "".equals(serializerClass.trim())) {
 			throw new ERpcSerializeException("serializer not found!");
@@ -180,12 +194,20 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		// TODO Auto-generated method stub
-		getSpringContext();
+//		getSpringContext();
 		
 		initFilterChain();
 		
 		initDigister();
 		
 		initRouteIndicator();
+		
+//		serviceExporter.afterPropertiesSet();
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		// TODO Auto-generated method stub
+		this.springContext = applicationContext;
 	}
 }

@@ -10,22 +10,44 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExporterFactory {
 	
-	public List<ServiceExporter>getExporters()throws ERpcException{
+	private static ServiceExporter localExporter;
+	
+	private static ServiceExporter remoteExpoeter;
+	
+	private void initExporters() throws ERpcException{
 		String registryCenterAddr = PropertiesUtil.getConfig("registryCenter");
 		if(registryCenterAddr == null) {
 			throw new ERpcException("registryCenter not found");
 		}
+		localExporter = new LocalExporter();
 		
-		List<ServiceExporter>exporters = new ArrayList<ServiceExporter>();
-		exporters.add(new LocalExporter());
-		
-		if(registryCenterAddr.startsWith("zookeeper:\\")) {
-			exporters.add(new ZookeeperExporter(registryCenterAddr));
-		}else if(registryCenterAddr.startsWith("nacos:\\")) {
-			exporters.add(new NacosExporter(registryCenterAddr));
+		if(registryCenterAddr.startsWith("zookeeper://")) {
+			remoteExpoeter = new ZookeeperExporter(registryCenterAddr);
+		}else if(registryCenterAddr.startsWith("nacos://")) {
+			remoteExpoeter = new NacosExporter(registryCenterAddr);
 		}else {
 			throw new ERpcException("Invalid registryCenter address");
 		}
+	}
+	
+	public List<ServiceExporter>getExporters()throws ERpcException{
+		if(localExporter == null) {
+			initExporters();
+		}
+		
+		List<ServiceExporter> exporters = new ArrayList<ServiceExporter>();
+		exporters.add(localExporter);
+		exporters.add(remoteExpoeter);
 		return exporters;
 	}
+
+	public ServiceExporter getLocalExporter() {
+		return localExporter;
+	}
+
+	public ServiceExporter getRemoteExpoeter() {
+		return remoteExpoeter;
+	}
+	
+	
 }

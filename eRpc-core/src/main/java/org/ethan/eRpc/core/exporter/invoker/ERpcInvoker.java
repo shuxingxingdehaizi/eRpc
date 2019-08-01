@@ -96,6 +96,7 @@ public class ERpcInvoker {
 		
 		header.setServerIp(addr.getHostAddress().toString());
 		header.setServiceName(request.getHeader().getServiceName());
+		header.seteRpcId(request.getHeader().geteRpcId());
 		
 		response.setAttachment(request.getAttachment());
 		response.setHeader(header);

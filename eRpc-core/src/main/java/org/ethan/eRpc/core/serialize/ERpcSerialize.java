@@ -25,6 +25,13 @@ public interface ERpcSerialize{
 	public Object[] reqBodyDeSerialize(List<ServiceBean.Param> params , String body) throws ERpcSerializeException;
 	
 	/**
+	 *  请求参数序列化
+	 * @param obj
+	 * @return
+	 */
+	public String reqBodySerialize(Object... params) throws ERpcSerializeException;
+	
+	/**
 	 *  请求反序列化
 	 * @param obj
 	 * @return

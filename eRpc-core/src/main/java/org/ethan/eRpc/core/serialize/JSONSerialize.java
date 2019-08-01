@@ -1,6 +1,7 @@
 package org.ethan.eRpc.core.serialize;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,6 +108,20 @@ public class JSONSerialize implements ERpcSerialize {
             return null;
         }
     }
+	
+	
+
+	@Override
+	public String reqBodySerialize(Object... params) throws ERpcSerializeException {
+		// TODO Auto-generated method stub
+		Map<String,Object>paramsMap = new HashMap<String, Object>();
+		if(params != null && params.length > 0) {
+			for(Object p : params) {
+				
+			}
+		}
+		return null;
+	}
 
 	public static void main(String[] args) {
 		String jsonStr = "{\"header\":{\"serviceName\":\"rpcTest1\"},body:\"{\\\"param1\\\":\\\"aaaaaaaaaaaa\\\"}\"}";

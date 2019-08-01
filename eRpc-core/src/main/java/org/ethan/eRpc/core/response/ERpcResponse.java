@@ -34,6 +34,12 @@ public class ERpcResponse implements Serializable{
 		 */
 		private String serviceName;
 		
+		/**
+		 * eRpcId
+		 * @return
+		 */
+		private String eRpcId;
+		
 
 		public String getServerIp() {
 			return serverIp;
@@ -49,6 +55,14 @@ public class ERpcResponse implements Serializable{
 
 		public void setServiceName(String serviceName) {
 			this.serviceName = serviceName;
+		}
+
+		public String geteRpcId() {
+			return eRpcId;
+		}
+
+		public void seteRpcId(String eRpcId) {
+			this.eRpcId = eRpcId;
 		}
 
 	}

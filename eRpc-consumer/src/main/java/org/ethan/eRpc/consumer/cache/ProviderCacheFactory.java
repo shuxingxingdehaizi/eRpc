@@ -2,7 +2,6 @@ package org.ethan.eRpc.consumer.cache;
 
 import org.ethan.eRpc.core.ERpcException;
 import org.ethan.eRpc.core.util.PropertiesUtil;
-import org.springframework.stereotype.Service;
 
 public class ProviderCacheFactory {
 	

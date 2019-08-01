@@ -1,10 +1,7 @@
 package org.ethan.eRpc.consumer.socket;
-//
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.net.ssl.SSLEngine;
@@ -15,19 +12,14 @@ import org.ethan.eRpc.core.util.PropertiesUtil;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
-//import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.bytes.ByteArrayEncoder;
-import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
@@ -121,7 +113,7 @@ public class Client {
 		 return b.connect(addr,port).sync(); // 异步连接服务器
 	 }
 	 
-	 public void sendRequest(String addr,int port,String request) throws UnsupportedEncodingException, InterruptedException {
-		 getChannelFuture(addr,port).channel().writeAndFlush(request.getBytes("UTF-8"));
+	 public void sendRequest(String addr,int port,byte[] request) throws UnsupportedEncodingException, InterruptedException {
+		 getChannelFuture(addr,port).channel().writeAndFlush(request);
 	 }
 }

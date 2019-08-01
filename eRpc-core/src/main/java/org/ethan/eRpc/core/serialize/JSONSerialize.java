@@ -92,6 +92,11 @@ public class JSONSerialize implements ERpcSerialize {
 		return JSON.toJSONString(result);
 	}
 	
+	public<T> T respBodyDeSerialize(String result,Class<T>classes) throws ERpcSerializeException {
+		// TODO Auto-generated method stub
+		return JSON.parseObject(result, classes);
+	}
+	
 	private String getMessage(ByteBuf buf) {
         byte[] con = new byte[buf.readableBytes()];
         buf.readBytes(con);

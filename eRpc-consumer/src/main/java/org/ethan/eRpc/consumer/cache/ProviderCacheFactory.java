@@ -1,53 +1,33 @@
 package org.ethan.eRpc.consumer.cache;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.ethan.eRpc.core.ERpcException;
 import org.ethan.eRpc.core.util.PropertiesUtil;
 import org.springframework.stereotype.Service;
 
-@Service
 public class ProviderCacheFactory {
 	
-	private static ServiceExporter localExporter;
+	private static ProviderCache localCache;
 	
-	private static ServiceExporter remoteExpoeter;
 	
-	private void initExporters() throws ERpcException{
+	private static void initExporters() throws ERpcException{
 		String registryCenterAddr = PropertiesUtil.getConfig("registryCenter");
 		if(registryCenterAddr == null) {
 			throw new ERpcException("registryCenter not found");
 		}
-		localExporter = new LocalExporter();
 		
 		if(registryCenterAddr.startsWith("zookeeper://")) {
-			remoteExpoeter = new ZookeeperExporter(registryCenterAddr);
+			localCache = new ProviderCacheZkImpl();
 		}else if(registryCenterAddr.startsWith("nacos://")) {
-			remoteExpoeter = new NacosExporter(registryCenterAddr);
+			localCache = new ProviderCacheNacosImpl();
 		}else {
 			throw new ERpcException("Invalid registryCenter address");
 		}
 	}
-	
-	public List<ServiceExporter>getExporters()throws ERpcException{
-		if(localExporter == null) {
+
+	public static ProviderCache getProdiderCache() throws ERpcException {
+		if(localCache == null) {
 			initExporters();
 		}
-		
-		List<ServiceExporter> exporters = new ArrayList<ServiceExporter>();
-		exporters.add(localExporter);
-		exporters.add(remoteExpoeter);
-		return exporters;
+		return localCache;
 	}
-
-	public ServiceExporter getLocalExporter() {
-		return localExporter;
-	}
-
-	public ServiceExporter getRemoteExpoeter() {
-		return remoteExpoeter;
-	}
-	
-	
 }

@@ -46,6 +46,15 @@ public interface ERpcSerialize{
 	public String respBodySerialize(Object result) throws ERpcSerializeException;
 	
 	/**
+	 * 响应体反序列化
+	 * @param result
+	 * @param classes
+	 * @return
+	 * @throws ERpcSerializeException
+	 */
+	public<T> T respBodyDeSerialize(String result,Class<T>classes) throws ERpcSerializeException;
+	
+	/**
 	 *  响应反序列化
 	 * @param obj
 	 * @return

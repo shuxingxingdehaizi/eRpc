@@ -140,6 +140,10 @@ public class ServiceBean implements Serializable{
 	public void setServiceMethod(Method serviceMethod) {
 		this.serviceMethod = serviceMethod;
 	}
+	
+	public String toString() {
+		return name+"---"+className+"."+this.serviceMethod.getName();
+	}
 
 	public static class Param{
 		

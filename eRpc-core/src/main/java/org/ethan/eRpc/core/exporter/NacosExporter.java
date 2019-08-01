@@ -25,7 +25,7 @@ public class NacosExporter implements ServiceExporter {
 	@Override
 	public void export(ServiceBean service) {
 		// TODO Auto-generated method stub
-		logger.info("Export service ["+JSON.toJSONString(service)+"] to nacos");
+		logger.info("Export service ["+service+"] to nacos");
 	}
 
 	@Override

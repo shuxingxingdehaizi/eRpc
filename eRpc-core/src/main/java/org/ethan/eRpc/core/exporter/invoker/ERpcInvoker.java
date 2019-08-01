@@ -2,6 +2,8 @@ package org.ethan.eRpc.core.exporter.invoker;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import org.ethan.eRpc.core.ERpcException;
 import org.ethan.eRpc.core.bean.ServiceBean;
@@ -11,6 +13,9 @@ import org.ethan.eRpc.core.exporter.LocalExporter;
 import org.ethan.eRpc.core.request.ERpcRequest;
 import org.ethan.eRpc.core.response.ERpcResponse;
 import org.ethan.eRpc.core.serialize.ERpcSerializeException;
+import org.ethan.eRpc.core.util.PropertiesUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -20,6 +25,8 @@ import com.alibaba.fastjson.JSON;
 
 @Service
 public class ERpcInvoker {
+	
+	static final Logger logger = LoggerFactory.getLogger(ERpcInvoker.class);
 	
 	@Autowired
 	private ExporterFactory exporterFactory;
@@ -32,21 +39,15 @@ public class ERpcInvoker {
 		String version = eRpcRequest.getHeader().getVersion();
 		
 		ServiceBean serviceBean = exporterFactory.getLocalExporter().getServiceBean(serviceName, version);
-		if(serviceBean == null && exporterFactory.getRemoteExpoeter() != null) {
-			serviceBean = exporterFactory.getRemoteExpoeter().getServiceBean(serviceName, version);
-		}
 		if(serviceBean == null) {
 			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
 		}
 		Object controller = null;
 		try {
-			controller = springContext.getBean(Class.forName(serviceBean.getClassName()));
+			controller = springContext.getBean(serviceBean.getBeanName());
 		} catch (BeansException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error("Error occurs when getBean",e1);
 		}
 		
 		if(controller == null) {
@@ -60,7 +61,10 @@ public class ERpcInvoker {
 			
 			Object result = serviceMethod.invoke(controller, params);
 			
+			
 			eRpcRequestContext.getResponse().setBody(eRpcRequestContext.getSerializer().respBodySerialize(result));
+			
+			assembleResponseHeader(eRpcRequestContext.getRequest(), eRpcRequestContext.getResponse());
 			
 		} catch (ERpcSerializeException e) {
 			// TODO Auto-generated catch block
@@ -76,5 +80,24 @@ public class ERpcInvoker {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void assembleResponseHeader(ERpcRequest request,ERpcResponse response) throws ERpcException {
+		ERpcResponse.Header header= response.new Header();
+		
+		InetAddress addr;
+		try {
+			addr = InetAddress.getLocalHost();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			logger.error("Error occurs when getLocalHost",e);
+			throw new ERpcException("Error occurs when getLocalHost",e);
+		}
+		
+		header.setServerIp(addr.getHostAddress().toString());
+		header.setServiceName(request.getHeader().getServiceName());
+		
+		response.setAttachment(request.getAttachment());
+		response.setHeader(header);
 	}
 }

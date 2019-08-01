@@ -42,7 +42,7 @@ public class LocalExporter implements ServiceExporter{
 			localRegistMap.put(service.getName(), new ConcurrentHashMap<String, ServiceBean>());
 		}
 		localRegistMap.get(service.getName()).put(service.getVersion(), service);
-		logger.info("Export service ["+JSON.toJSONString(service)+"] to local");
+		logger.info("Export service ["+service+"] to local");
 	}
 
 	@Override

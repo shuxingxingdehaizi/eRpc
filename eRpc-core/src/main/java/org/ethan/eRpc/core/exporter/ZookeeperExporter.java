@@ -31,7 +31,7 @@ public class ZookeeperExporter implements ServiceExporter {
 	@Override
 	public void export(ServiceBean service) {
 		// TODO Auto-generated method stub
-		logger.info("Export service ["+JSON.toJSONString(service)+"] to zookeeper");
+		logger.info("Export service ["+service+"] to zookeeper");
 	}
 
 	@Override

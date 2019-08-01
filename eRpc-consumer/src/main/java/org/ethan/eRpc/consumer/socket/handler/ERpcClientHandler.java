@@ -1,4 +1,4 @@
-package org.ethan.eRpc.core.handler;
+package org.ethan.eRpc.consumer.socket.handler;
 
 import java.nio.charset.Charset;
 

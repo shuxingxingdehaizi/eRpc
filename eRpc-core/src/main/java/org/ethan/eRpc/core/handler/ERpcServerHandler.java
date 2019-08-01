@@ -36,15 +36,6 @@ import io.netty.channel.ChannelHandler.Sharable;
 @Sharable
 public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements InitializingBean,ApplicationContextAware{
 	
-	@Autowired
-	private SpringContextHolder springContextHolder;
-	
-	@Autowired
-	private ERpcRequestRouter requestRouter;
-	
-	@Autowired
-	private ServiceExporter serviceExporter;
-	
 	private List<ERpcFilter>filters;
 	
 	private ApplicationContext springContext;
@@ -88,30 +79,20 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 		//2.组装请求上下文
 		ERpcRequestContext requestContext = new ERpcRequestContext(springContext,ctx,serializer,request,response);
 		
-//		//3.前置过滤器
-//		if(this.filters != null && !this.filters.isEmpty()) {
-//        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-//            chain.doPreFilter(chain, requestContext);
-//        }
-//		
-//		//4.将请求路由至对应Controller,获取响应
-//		ERpcRequestRouter.ControllerMethod cm = requestRouter.getControllerMethod(this.routeIndicator.getRouteIndicator(socketRequest.getRequestMessage()));
-//		if(cm == null) {
-//			ctx.channel().writeAndFlush("No mapping found").sync();
-//			return;
-//		}
-//		Object response = cm.getMethod().invoke(cm.getControllerBean(), socketRequest.getRequestMessage());
-//		
-//		//5.后置过滤器
-//		socketResponse.setResponseMsg(response);
-//		
-//		ERpcRequestContext responseContext = new ERpcRequestContext(ctx, socketRequest, socketResponse);
-//		if(this.filters != null && !this.filters.isEmpty()) {
-//        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-//            chain.doAfterFilter(chain, responseContext);
-//        }
+		//3.前置过滤器
+		if(this.filters != null && !this.filters.isEmpty()) {
+        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+            chain.doPreFilter(chain, requestContext);
+        }
+
 		
 		invoker.invoke(requestContext);
+		
+		//5.后置过滤器
+		if(this.filters != null && !this.filters.isEmpty()) {
+        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+            chain.doAfterFilter(chain, requestContext);
+        }
 		
 		//6.响应编码
 		byte[] responseBytes = this.serializer.respSerialize(requestContext.getResponse());
@@ -124,7 +105,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("Data receive complete!");
+//		System.out.println("Data receive complete!");
 	}
 
 	@Override
@@ -140,7 +121,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 //	
 	private void initFilterChain() {
         Map<String,ERpcFilter>filterMaps = springContext.getBeansOfType(ERpcFilter.class);
-        if(filters != null && !filters.isEmpty()) {
+        if(filterMaps != null && !filterMaps.isEmpty()) {
         	this.filters = new ArrayList<ERpcFilter>();
         	for(Map.Entry<String,ERpcFilter>ent : filterMaps.entrySet()) {
         		this.filters.add(ent.getValue());

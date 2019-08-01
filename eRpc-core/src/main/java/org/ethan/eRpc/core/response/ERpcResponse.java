@@ -32,7 +32,7 @@ public class ERpcResponse implements Serializable{
 		/**
 		 * 调用的接口名
 		 */
-		private String interfaceName;
+		private String serviceName;
 		
 
 		public String getServerIp() {
@@ -43,13 +43,14 @@ public class ERpcResponse implements Serializable{
 			this.serverIp = serverIp;
 		}
 
-		public String getInterfaceName() {
-			return interfaceName;
+		public String getServiceName() {
+			return serviceName;
 		}
 
-		public void setInterfaceName(String interfaceName) {
-			this.interfaceName = interfaceName;
+		public void setServiceName(String serviceName) {
+			this.serviceName = serviceName;
 		}
+
 	}
 
 	public Header getHeader() {

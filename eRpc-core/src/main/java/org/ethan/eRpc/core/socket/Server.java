@@ -47,7 +47,7 @@ public class Server implements InitializingBean,DisposableBean{
 		long startTime = System.currentTimeMillis();
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		
-		EventLoopGroup group = new NioEventLoopGroup();
+		EventLoopGroup group = new NioEventLoopGroup(10);
 		
 		try {
 			ServerBootstrap sb = new  ServerBootstrap();

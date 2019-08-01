@@ -63,7 +63,6 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 			
 		}else {
 			List<org.ethan.eRpc.core.exporter.ServiceExporter> exporters = exporterFactory.getExporters();
-			
 			for(Map.Entry<String, Object>ent : controllers.entrySet()) {
 				Method[] ms = ent.getValue().getClass().getMethods();
 				if(ms != null && ms.length > 0) {
@@ -76,6 +75,7 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 							service.setVersion(serviceConfig.verion());
 							service.setServiceMethod(m);
 							service.setClassName(ent.getValue().getClass().getName());
+							service.setBeanName(ent.getKey());
 							Parameter[] ps = m.getParameters();
 							if(ps != null && ps.length > 0) {
 								List<ServiceBean.Param>params = new ArrayList<ServiceBean.Param>();

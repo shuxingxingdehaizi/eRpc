@@ -1,6 +1,7 @@
 package org.ethan.eRpc.core.context;
 
 
+import org.ethan.eRpc.core.bean.ServiceBean;
 import org.ethan.eRpc.core.request.ERpcRequest;
 import org.ethan.eRpc.core.response.ERpcResponse;
 import org.ethan.eRpc.core.serialize.ERpcSerialize;
@@ -48,5 +49,4 @@ public class ERpcRequestContext {
 	public ERpcSerialize getSerializer() {
 		return serializer;
 	}
-	
 }

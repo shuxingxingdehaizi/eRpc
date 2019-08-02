@@ -113,15 +113,9 @@ public class JSONSerialize implements ERpcSerialize {
 	
 
 	@Override
-	public String reqBodySerialize(Object... params) throws ERpcSerializeException {
+	public String reqBodySerialize(Map<String,Object> params) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
-		Map<String,Object>paramsMap = new HashMap<String, Object>();
-		if(params != null && params.length > 0) {
-			for(Object p : params) {
-				
-			}
-		}
-		return null;
+		return JSON.toJSONString(params);
 	}
 
 	public static void main(String[] args) {

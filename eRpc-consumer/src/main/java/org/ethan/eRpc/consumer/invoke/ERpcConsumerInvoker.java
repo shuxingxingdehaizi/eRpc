@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.UUID;
 
 import org.ethan.eRpc.common.bean.ERpcRequest;
@@ -21,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -44,7 +44,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 	
 	
 	
-	public<T> T invoke(String serviceName,String version,Class<T> classes,Object... params) throws ERpcException {
+	public<T> T invoke(String serviceName,String version,Class<T> classes,Map<String,Object> params) throws ERpcException {
 		//先尝试本地invoke
 		
 		if(isERpcProviderEnabled) {
@@ -70,7 +70,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		}
 	}
 	
-	private<T> T localInvoke(ServiceBean serviceBean,Class<T> classes,Object... params) throws ERpcException {
+	private<T> T localInvoke(ServiceBean serviceBean,Class<T> classes,Map<String,Object> params) throws ERpcException {
 		Object controller = null;
 		try {
 			controller = applicationContext.getBean(serviceBean.getBeanName());
@@ -107,7 +107,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		return null;
 	}
 	
-	private<T> T invoke(Host host,String serviceName,Class<T> classes,String version,Object... params) throws UnsupportedEncodingException, InterruptedException, IOException, ERpcSerializeException, ERpcException {
+	private<T> T invoke(Host host,String serviceName,Class<T> classes,String version,Map<String,Object> params) throws UnsupportedEncodingException, InterruptedException, IOException, ERpcSerializeException, ERpcException {
 		ERpcRequest request = new ERpcRequest();
 		ERpcRequest.Header header = new ERpcRequest.Header();
 		String eRpcId = UUID.randomUUID().toString();
@@ -130,16 +130,15 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		providerCache = ProviderCacheFactory.getProdiderCache();
 		initDigister();
 		
-		Class ExporterFactoryClass = null;
 		try {
-			ExporterFactoryClass = Class.forName("org.ethan.eRpc.core.exporter.ExporterFactory");
+			Class ExporterFactoryClass = Class.forName("org.ethan.eRpc.core.exporter.ExporterFactory");
+			Object exporterFactoryClass = applicationContext.getBean(ExporterFactoryClass);
+			Method getLocalExporter = exporterFactoryClass.getClass().getMethod("getLocalExporter");
+			localExporter = getLocalExporter.invoke(exporterFactoryClass);
 		} catch (ClassNotFoundException e) {
 			logger.info("ERpc Provider not enable");
 			isERpcProviderEnabled = false;
 		}
-		Object exporterFactoryClass = applicationContext.getBean(ExporterFactoryClass);
-		Method getLocalExporter = exporterFactoryClass.getClass().getMethod("getLocalExporter");
-		localExporter = getLocalExporter.invoke(exporterFactoryClass);
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package org.ethan.eRpc.comsumerdemo.sao;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.ethan.eRpc.common.exception.ERpcException;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 远程服务调用类
+ * 调用远程方法的第一种方式，使用ERpcConsumerInvoker.invoke()进行泛化调用
  * @author Admin
  *
  */
@@ -19,7 +21,9 @@ public class TestSao{
 	private ERpcConsumerInvoker invoker;
 	
 	public Map<String,Object>test1(String p1) throws ERpcException{
-		return invoker.invoke("rpcTest1", "1.0", Map.class, p1);
+		Map<String,Object>params = new HashMap<String, Object>();
+		params.put("param1", p1);
+		return invoker.invoke("rpcTest1", "1.0", Map.class, params);
 	}
 	
 }

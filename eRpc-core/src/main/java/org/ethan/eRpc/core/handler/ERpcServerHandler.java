@@ -19,6 +19,8 @@ import org.ethan.eRpc.core.filter.ERpcFilterChain;
 import org.ethan.eRpc.core.route.ERpcRequestRouter;
 import org.ethan.eRpc.core.route.RouteIndicator;
 import org.ethan.eRpc.core.route.ServiceExporter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -26,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import com.alibaba.fastjson.JSON;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -36,6 +40,8 @@ import io.netty.channel.ChannelHandler.Sharable;
 @Sharable
 public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements InitializingBean,ApplicationContextAware{
 	
+	static final Logger logger = LoggerFactory.getLogger(ERpcServerHandler.class);
+			
 	private List<ERpcFilter>filters;
 	
 	private ApplicationContext springContext;
@@ -54,13 +60,13 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		 System.out.println(ctx.channel().localAddress().toString() + " Chanel Activated!");
+		logger.info(ctx.channel().localAddress().toString() + " Chanel Activated!");
 	}
 
 	@Override
 	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println(ctx.channel().localAddress().toString() + " Channel deactivated!");
+		logger.info(ctx.channel().localAddress().toString() + " Channel deactivated!");
 	}
 
 	/**
@@ -79,23 +85,31 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 		//2.组装请求上下文
 		ERpcRequestContext requestContext = new ERpcRequestContext(springContext,ctx,serializer,request,response);
 		
-		//3.前置过滤器
-		if(this.filters != null && !this.filters.isEmpty()) {
-        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-            chain.doPreFilter(chain, requestContext);
-        }
+		byte[] responseBytes = null;
+		try {
+			//3.前置过滤器
+			if(this.filters != null && !this.filters.isEmpty()) {
+	        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+	            chain.doPreFilter(chain, requestContext);
+	        }
 
-		
-		invoker.invoke(requestContext);
-		
-		//5.后置过滤器
-		if(this.filters != null && !this.filters.isEmpty()) {
-        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
-            chain.doAfterFilter(chain, requestContext);
-        }
+			
+			invoker.invoke(requestContext);
+			
+			//5.后置过滤器
+			if(this.filters != null && !this.filters.isEmpty()) {
+	        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
+	            chain.doAfterFilter(chain, requestContext);
+	        }
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("Error occurs when handle request:"+JSON.toJSONString(request),e);
+			invoker.assembleResponseHeader(request, response);
+		}
 		
 		//6.响应编码
-		byte[] responseBytes = this.serializer.respSerialize(requestContext.getResponse());
+		responseBytes = this.serializer.respSerialize(requestContext.getResponse());
         
         //3.生成响应，发送至客户端
         ctx.channel().writeAndFlush(responseBytes).sync();
@@ -135,13 +149,13 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 					return o1.getOrder() - o2.getOrder();
 				}
 			});
-        	System.out.println("==============Filter chain begin================");
+        	logger.info("==============Filter chain begin================");
         	for(ERpcFilter f : filters) {
         		System.out.println(f.getOrder()+":"+f.getClass().getName());
         	}
-        	System.out.println("==============Filter chain end================");
+        	logger.info("==============Filter chain end================");
         }else {
-        	System.out.println("No filter found");
+        	logger.info("No filter found");
         }
 	}
 	
@@ -153,7 +167,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 		
 		this.serializer = (ERpcSerialize) this.getClass().getClassLoader().loadClass(serializerClass).newInstance();
 		
-		System.out.println("Use ["+serializerClass+"] as requestDecorder");
+		logger.info("Use ["+serializerClass+"] as requestDecorder");
 	}
 	
 	private void initRouteIndicator() {
@@ -169,7 +183,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 				}
 			}
 		}
-		System.out.println("Use ["+routeIndicator.getClass().getName()+"] as routeIndicator");
+		logger.info("Use ["+routeIndicator.getClass().getName()+"] as routeIndicator");
 	}
 
 	@Override

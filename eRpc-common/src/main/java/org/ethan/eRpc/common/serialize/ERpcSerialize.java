@@ -2,6 +2,7 @@ package org.ethan.eRpc.common.serialize;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.ethan.eRpc.common.bean.ERpcRequest;
 import org.ethan.eRpc.common.bean.ERpcResponse;
@@ -30,7 +31,7 @@ public interface ERpcSerialize{
 	 * @param obj
 	 * @return
 	 */
-	public String reqBodySerialize(Object... params) throws ERpcSerializeException;
+	public String reqBodySerialize(Map<String,Object> params) throws ERpcSerializeException;
 	
 	/**
 	 *  请求反序列化

@@ -8,7 +8,11 @@ import javax.net.ssl.SSLEngine;
 
 import org.ethan.eRpc.common.bean.socket.ssl.SSLContextFactory;
 import org.ethan.eRpc.common.util.PropertiesUtil;
+import org.ethan.eRpc.consumer.invoke.ERpcFuture;
 import org.ethan.eRpc.consumer.socket.handler.ERpcClientHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -25,7 +29,9 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.util.CharsetUtil;
 
 public class Client {
-	 
+	
+	 private static final Logger logger = LoggerFactory.getLogger(Client.class);
+			
 	 private boolean sslEnable = Boolean.valueOf(PropertiesUtil.getConfig("isSSLEnable"));;
 	 
 	 private Bootstrap b;
@@ -54,14 +60,13 @@ public class Client {
 					@Override
 					protected void initChannel(SocketChannel ch) throws Exception {
 						// TODO Auto-generated method stub
-						System.out.println("connectting...");
 						if(sslEnable) {
 							SSLEngine engine = SSLContextFactory.getClientContext().createSSLEngine();
 					        engine.setUseClientMode(true);
 					        ch.pipeline().addLast("ssl", new SslHandler(engine));
 					        
 						}
-						ch.pipeline().addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
+//						ch.pipeline().addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
 						
 //						ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4));
 //						ch.pipeline().addLast(new LengthFieldPrepender(4));
@@ -89,7 +94,7 @@ public class Client {
 //			 
 //             cf.channel().closeFuture().sync(); // 异步等待关闭连接channel
 		} finally {
-			 group.shutdownGracefully().sync(); // 释放线程池资源
+//			 group.shutdownGracefully().sync(); // 释放线程池资源
 		}
 	 }
 	 
@@ -109,10 +114,17 @@ public class Client {
      }
 	 
 	 private ChannelFuture connect(String addr,int port) throws InterruptedException {
-		 return b.connect(addr,port).sync(); // 异步连接服务器
+		 logger.info("connectting to server "+addr+":"+port);
+		 ChannelFuture cf = b.connect(addr,port).sync(); // 异步连接服务器
+		 logger.info("connected");
+		 return cf;
 	 }
 	 
 	 public void sendRequest(String addr,int port,byte[] request) throws UnsupportedEncodingException, InterruptedException {
 		 getChannelFuture(addr,port).channel().writeAndFlush(request);
 	 }
+	 
+//	 public static void main(String[] args) throws UnsupportedEncodingException, InterruptedException, IOException {
+//		Client.getClient().sendRequest("127.0.0.1", 6666, "{\"header\":{\"serviceName\":\"rpcTest2\",\"version\":\"1.0\"},body:\"{\\\"p1\\\":\\\"bbb\\\",\\\"p2\\\":456}\"}".getBytes());
+//	}
 }

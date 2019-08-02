@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages= {"**.org.ethan.**"})
-public class ComsumerDemoApplication {
+public class ConsumerDemoApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ComsumerDemoApplication.class, args);
+		SpringApplication.run(ConsumerDemoApplication.class, args);
 	}
 }

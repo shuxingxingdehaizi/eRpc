@@ -62,23 +62,14 @@ public class ERpcInvoker {
 			
 			assembleResponseHeader(eRpcRequestContext.getRequest(), eRpcRequestContext.getResponse());
 			
-		} catch (ERpcSerializeException e) {
+		} catch (ERpcSerializeException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new ERpcException("Error occurs when   bean["+serviceBean.getBeanName()+"] not found!");
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			throw new ERpcException("Error occurs when   invoke["+serviceBean.getBeanName()+"]",e);
+		} 
 	}
 	
-	private void assembleResponseHeader(ERpcRequest request,ERpcResponse response) throws ERpcException {
+	public void assembleResponseHeader(ERpcRequest request,ERpcResponse response) throws ERpcException {
 		ERpcResponse.Header header= response.new Header();
 		
 		InetAddress addr;

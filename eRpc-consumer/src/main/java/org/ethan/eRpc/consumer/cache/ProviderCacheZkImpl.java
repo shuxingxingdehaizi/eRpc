@@ -14,7 +14,7 @@ public class ProviderCacheZkImpl implements ProviderCache {
 		host.setHostName("pc-EthanZhao");
 		host.setIp("127.0.0.1");
 		host.setPort(6666);
-		return new Host();
+		return host;
 	}
 
 }

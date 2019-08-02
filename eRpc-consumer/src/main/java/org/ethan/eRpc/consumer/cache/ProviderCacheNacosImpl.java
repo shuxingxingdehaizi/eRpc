@@ -1,6 +1,6 @@
 package org.ethan.eRpc.consumer.cache;
 
-import org.ethan.eRpc.core.bean.ServiceBean.Host;
+import org.ethan.eRpc.common.bean.Host;
 
 public class ProviderCacheNacosImpl implements ProviderCache {
 

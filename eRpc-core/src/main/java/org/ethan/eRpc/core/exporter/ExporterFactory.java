@@ -3,8 +3,8 @@ package org.ethan.eRpc.core.exporter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ethan.eRpc.core.ERpcException;
-import org.ethan.eRpc.core.util.PropertiesUtil;
+import org.ethan.eRpc.common.exception.ERpcException;
+import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,11 +41,17 @@ public class ExporterFactory {
 		return exporters;
 	}
 
-	public ServiceExporter getLocalExporter() {
+	public ServiceExporter getLocalExporter() throws ERpcException {
+		if(localExporter == null) {
+			initExporters();
+		}
 		return localExporter;
 	}
 
-	public ServiceExporter getRemoteExpoeter() {
+	public ServiceExporter getRemoteExpoeter() throws ERpcException {
+		if(remoteExpoeter == null) {
+			initExporters();
+		}
 		return remoteExpoeter;
 	}
 	

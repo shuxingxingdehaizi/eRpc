@@ -5,9 +5,9 @@ import java.nio.charset.Charset;
 
 import javax.net.ssl.SSLEngine;
 
+import org.ethan.eRpc.common.bean.socket.ssl.SSLContextFactory;
+import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.handler.ERpcServerHandler;
-import org.ethan.eRpc.core.socket.ssl.SSLContextFactory;
-import org.ethan.eRpc.core.util.PropertiesUtil;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,6 @@ public class Server implements InitializingBean,DisposableBean{
 	@Autowired
 	private ERpcServerHandler requestHandler;
 	
-	@Autowired
-	private SSLContextFactory sslContextFactory;
 	
 	private static final int PORT = Integer.valueOf(PropertiesUtil.getConfig("port"));
 	
@@ -62,7 +60,7 @@ public class Server implements InitializingBean,DisposableBean{
 					// TODO Auto-generated method stub
 					System.out.println("Got a client connect request: Host:"+ch.localAddress().getHostName()+" Port:"+ch.localAddress().getPort());
 					if(sslEnable) {
-				        SSLEngine engine = sslContextFactory.getServerContext().createSSLEngine();
+				        SSLEngine engine = SSLContextFactory.getServerContext().createSSLEngine();
 				        engine.setUseClientMode(false);
 				        engine.setNeedClientAuth(true);
 				        ch.pipeline().addLast("ssl", new SslHandler(engine));

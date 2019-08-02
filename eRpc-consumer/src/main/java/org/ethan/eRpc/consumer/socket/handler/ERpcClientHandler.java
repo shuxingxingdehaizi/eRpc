@@ -1,12 +1,8 @@
 package org.ethan.eRpc.consumer.socket.handler;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-
-import org.ethan.eRpc.consumer.invoke.ERpcInvoker;
+import org.ethan.eRpc.common.bean.ERpcResponse;
+import org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker;
 import org.ethan.eRpc.consumer.invoke.FutureContainer;
-import org.ethan.eRpc.core.response.ERpcResponse;
-import org.ethan.eRpc.core.util.PropertiesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +16,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class ERpcClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
 
 	@Autowired
-	private ERpcInvoker incoker;
+	private ERpcConsumerInvoker incoker;
 	/**
 	 * 客户端收到服务器响应时触发的方法，此处写实际业务逻辑
 	 */

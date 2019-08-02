@@ -3,8 +3,8 @@ package org.ethan.eRpc.consumer.invoke;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import org.ethan.eRpc.core.ERpcException;
-import org.ethan.eRpc.core.response.ERpcResponse;
+import org.ethan.eRpc.common.bean.ERpcResponse;
+import org.ethan.eRpc.common.exception.ERpcException;
 
 /**
  * 远程调用异步响应类

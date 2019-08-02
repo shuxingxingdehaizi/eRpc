@@ -1,7 +1,7 @@
 package org.ethan.eRpc.core.exporter;
 
-import org.ethan.eRpc.core.ERpcException;
-import org.ethan.eRpc.core.bean.ServiceBean;
+import org.ethan.eRpc.common.bean.ServiceBean;
+import org.ethan.eRpc.common.exception.ERpcException;
 
 public interface ServiceExporter {
 	

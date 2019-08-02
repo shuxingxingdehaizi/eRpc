@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.ethan.eRpc.core.ERpcException;
+import org.ethan.eRpc.common.bean.Host;
+import org.ethan.eRpc.common.bean.ServiceBean;
+import org.ethan.eRpc.common.exception.ERpcException;
+import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.annotation.EService;
-import org.ethan.eRpc.core.bean.ServiceBean;
 import org.ethan.eRpc.core.exporter.ExporterFactory;
-import org.ethan.eRpc.core.util.PropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -93,7 +94,7 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 								logger.error("Error occurs when getLocalHost",e);
 								throw new ERpcException("Error occurs when getLocalHost",e);
 							}
-							ServiceBean.Host provider = new ServiceBean.Host(); 
+							Host provider = new Host(); 
 							provider.setApplicationName(PropertiesUtil.getConfig("applicationName"));
 							provider.setHostName(addr.getHostName().toString());
 							provider.setIp(addr.getHostAddress().toString());

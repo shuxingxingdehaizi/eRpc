@@ -2,12 +2,10 @@ package org.ethan.eRpc.core.exporter;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.ethan.eRpc.core.ERpcException;
-import org.ethan.eRpc.core.bean.ServiceBean;
+import org.ethan.eRpc.common.bean.ServiceBean;
+import org.ethan.eRpc.common.exception.ERpcException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.alibaba.fastjson.JSON;
 
 /**
  * 将服务暴露到本地
@@ -60,6 +58,9 @@ public class LocalExporter implements ServiceExporter{
 	@Override
 	public ServiceBean getServiceBean(String serviceName, String version) {
 		// TODO Auto-generated method stub
+		if(localRegistMap.get(serviceName) == null) {
+			return null;
+		}
 		return localRegistMap.get(serviceName).get(version);
 	}
 

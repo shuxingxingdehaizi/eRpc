@@ -6,10 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.net.ssl.SSLEngine;
 
+import org.ethan.eRpc.common.bean.socket.ssl.SSLContextFactory;
+import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.consumer.socket.handler.ERpcClientHandler;
-import org.ethan.eRpc.core.socket.ssl.SSLContextFactory;
-import org.ethan.eRpc.core.util.PropertiesUtil;
-
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

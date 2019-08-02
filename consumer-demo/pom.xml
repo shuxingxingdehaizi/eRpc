@@ -32,7 +32,7 @@
 		
 		<dependency>
 			<groupId>org.ethan.eRpc</groupId>
-			<artifactId>eRpc-core</artifactId>
+			<artifactId>eRpc-consumer</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		

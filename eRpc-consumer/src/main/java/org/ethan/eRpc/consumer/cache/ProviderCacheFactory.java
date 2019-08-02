@@ -1,7 +1,7 @@
 package org.ethan.eRpc.consumer.cache;
 
-import org.ethan.eRpc.core.ERpcException;
-import org.ethan.eRpc.core.util.PropertiesUtil;
+import org.ethan.eRpc.common.exception.ERpcException;
+import org.ethan.eRpc.common.util.PropertiesUtil;
 
 public class ProviderCacheFactory {
 	

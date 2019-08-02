@@ -1,6 +1,6 @@
 package org.ethan.eRpc.core.route;
 
-import org.ethan.eRpc.core.request.ERpcRequest;
+import org.ethan.eRpc.common.bean.ERpcRequest;
 import org.springframework.stereotype.Component;
 
 @Component("defaultIndicator")

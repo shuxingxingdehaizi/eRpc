@@ -1,5 +1,8 @@
 package org.ethan.eRpc.comsumerdemo.controller;
 
+import java.util.Map;
+
+import org.ethan.eRpc.comsumerdemo.sao.Test2Sao;
 import org.ethan.eRpc.comsumerdemo.service.TestServiceImpl;
 import org.ethan.eRpc.consumer.porxy.BeanTestService;
 import org.ethan.eRpc.consumer.porxy.UserService;
@@ -14,9 +17,6 @@ public class TestController {
 	private TestServiceImpl testService;
 	
 	@Autowired
-	private BeanTestService beanTestService;
-	
-	@Autowired
 	private UserService userService;
 	
 	@RequestMapping("/test1")
@@ -24,14 +24,9 @@ public class TestController {
 		return testService.test1(p1);
 	}
 	
-	@RequestMapping("/beanTest1")
-	public Object eRpcTest1() {
-		return testService.beanTest1();
-	}
-	
-	@RequestMapping("/beanTest2")
-	public Object eRpcTest2() {
-		return beanTestService.beanTest();
+	@RequestMapping("/test2")
+	public Object eRpcTest2(String p1,int p2) {
+		return testService.test2(p1,p2);
 	}
 	
 	@RequestMapping("/beanTest3")

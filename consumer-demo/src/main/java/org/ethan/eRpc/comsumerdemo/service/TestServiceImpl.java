@@ -3,6 +3,7 @@ package org.ethan.eRpc.comsumerdemo.service;
 import java.util.Map;
 
 import org.ethan.eRpc.common.exception.ERpcException;
+import org.ethan.eRpc.comsumerdemo.sao.Test2Sao;
 import org.ethan.eRpc.comsumerdemo.sao.TestSao;
 import org.ethan.eRpc.consumer.porxy.BeanTestService;
 import org.springframework.beans.BeansException;
@@ -24,6 +25,10 @@ public class TestServiceImpl implements ApplicationContextAware{
 	@Qualifier("testSao")
 	private TestSao testSao;
 	
+	
+	@Autowired
+	private Test2Sao test2Sao;
+	
 	public Map<String,Object>test1(String p1){
 		try {
 			return testSao.test1(p1);
@@ -34,8 +39,8 @@ public class TestServiceImpl implements ApplicationContextAware{
 		return null;
 	}
 	
-	public String beanTest1() {
-		return ((BeanTestService)applicationContext.getBean("beanTestService")).beanTest();
+	public Map<String,Object>test2(String p1,int p2){
+		return test2Sao.rpcTest2(p1, p2);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class JSONSerialize implements ERpcSerialize {
 
 	private String charSet = PropertiesUtil.getConfig("charSet");
 	
-	@Override
+	
 	public byte[] reqSerialize(ERpcRequest request)  throws ERpcSerializeException{
 		// TODO Auto-generated method stub
 		try {
@@ -31,13 +31,13 @@ public class JSONSerialize implements ERpcSerialize {
 		}
 	}
 
-	@Override
+	
 	public ERpcRequest reqDeSerialize(ByteBuf stream)  throws ERpcSerializeException{
 		String requestStr = getMessage(stream);
 		return JSON.parseObject(requestStr, ERpcRequest.class);
 	}
 
-	@Override
+	
 	public byte[] respSerialize(ERpcResponse response) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
 		try {
@@ -49,7 +49,7 @@ public class JSONSerialize implements ERpcSerialize {
 		}
 	}
 
-	@Override
+	
 	public ERpcResponse respDeSerialize(byte[] stream) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
 		try {
@@ -62,7 +62,7 @@ public class JSONSerialize implements ERpcSerialize {
 		}
 	}
 
-	@Override
+	
 	public Object[] reqBodyDeSerialize(List<ServiceBean.Param> params , String body) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
 		
@@ -88,7 +88,7 @@ public class JSONSerialize implements ERpcSerialize {
 		return null;
 	}
 	
-	@Override
+	
 	public String respBodySerialize(Object result) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
 		return JSON.toJSONString(result);
@@ -112,7 +112,6 @@ public class JSONSerialize implements ERpcSerialize {
 	
 	
 
-	@Override
 	public String reqBodySerialize(Map<String,Object> params) throws ERpcSerializeException {
 		// TODO Auto-generated method stub
 		return JSON.toJSONString(params);

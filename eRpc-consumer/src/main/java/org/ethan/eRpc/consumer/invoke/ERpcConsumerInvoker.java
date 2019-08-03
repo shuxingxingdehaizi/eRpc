@@ -44,14 +44,14 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 	
 	
 	
-	public<T> T invoke(String serviceName,String version,Class<T> classes,Map<String,Object> params) throws ERpcException {
+	public<T> T invoke(String serviceName,String version,Class<T> returnType,Map<String,Object> params) throws ERpcException {
 		//先尝试本地invoke
 		
 		if(isERpcProviderEnabled) {
 			ServiceBean serviceBean = getLocalServiceBean(serviceName, version);
 			if(serviceBean != null) {
 				logger.info("Find service["+serviceName+"]with version["+version+"] in local,try local invoke");
-				return localInvoke(serviceBean,classes,params);
+				return localInvoke(serviceBean,returnType,params);
 			}
 			
 		}
@@ -62,7 +62,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
 		}
 		try {
-			return invoke(host, serviceName,classes,version, params);
+			return invoke(host, serviceName,returnType,version, params);
 		} catch (InterruptedException | IOException | ERpcSerializeException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error occurs when remote invoke",e);
@@ -70,7 +70,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		}
 	}
 	
-	private<T> T localInvoke(ServiceBean serviceBean,Class<T> classes,Map<String,Object> params) throws ERpcException {
+	private<T> T localInvoke(ServiceBean serviceBean,Class<T> returnType,Map<String,Object> params) throws ERpcException {
 		Object controller = null;
 		try {
 			controller = applicationContext.getBean(serviceBean.getBeanName());
@@ -88,7 +88,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		try {			
 			Object result = serviceMethod.invoke(controller, params);
 			
-			return serializer.respBodyDeSerialize(serializer.respBodySerialize(result), classes);
+			return serializer.respBodyDeSerialize(serializer.respBodySerialize(result), returnType);
 			
 		} catch (ERpcSerializeException e) {
 			// TODO Auto-generated catch block
@@ -107,7 +107,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		return null;
 	}
 	
-	private<T> T invoke(Host host,String serviceName,Class<T> classes,String version,Map<String,Object> params) throws UnsupportedEncodingException, InterruptedException, IOException, ERpcSerializeException, ERpcException {
+	private<T> T invoke(Host host,String serviceName,Class<T> returnType,String version,Map<String,Object> params) throws UnsupportedEncodingException, InterruptedException, IOException, ERpcSerializeException, ERpcException {
 		ERpcRequest request = new ERpcRequest();
 		ERpcRequest.Header header = new ERpcRequest.Header();
 		String eRpcId = UUID.randomUUID().toString();
@@ -121,7 +121,7 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		ERpcFuture future = FutureContainer.createFuture(10000L,eRpcId);
 		Client.getClient().sendRequest(host.getIp(), host.getPort(), serializer.reqSerialize(request));
 		ERpcResponse response =  future.get();
-		return serializer.respBodyDeSerialize(response.getBody(), classes);
+		return serializer.respBodyDeSerialize(response.getBody(), returnType);
 	}
 
 	@Override

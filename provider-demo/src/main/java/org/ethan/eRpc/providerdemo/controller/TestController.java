@@ -21,9 +21,9 @@ public class TestController {
 		return result;
 	}
 	
-	@RequestMapping("/test1")
+	@RequestMapping("/test2")
 	@EService(name="rpcTest2",verion="1.0")
-	public Map<String,Object>test1(String p1,int p2){
+	public Map<String,Object>test2(String p1,int p2){
 		Map<String,Object> result = new HashMap<String, Object>();
 		
 		result.put("responseCode", "000000");

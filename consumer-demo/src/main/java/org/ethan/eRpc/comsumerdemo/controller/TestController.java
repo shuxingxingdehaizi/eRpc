@@ -5,7 +5,6 @@ import java.util.Map;
 import org.ethan.eRpc.comsumerdemo.sao.Test2Sao;
 import org.ethan.eRpc.comsumerdemo.service.TestServiceImpl;
 import org.ethan.eRpc.consumer.porxy.BeanTestService;
-import org.ethan.eRpc.consumer.porxy.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +14,6 @@ public class TestController {
 	
 	@Autowired
 	private TestServiceImpl testService;
-	
-	@Autowired
-	private UserService userService;
 	
 	@RequestMapping("/test1")
 	public Object eRpcTest(String p1) {
@@ -30,7 +26,7 @@ public class TestController {
 	}
 	
 	@RequestMapping("/beanTest3")
-	public Object eRpcTest3() {
-		return userService.addUser();
+	public Object eRpcTest3(String name,int age) {
+		return testService.test3(name, age);
 	}
 }

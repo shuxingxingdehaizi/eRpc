@@ -12,7 +12,6 @@ import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.scanner.ClasspathPackageScanner;
 import org.ethan.eRpc.common.scanner.PackageScanner;
 import org.ethan.eRpc.common.util.PropertiesUtil;
-import org.ethan.eRpc.consumer.annotation.EServce;
 import org.ethan.eRpc.consumer.annotation.EServceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +37,7 @@ public class ERpcScanner {
 		if(PropertiesUtil.getConfig("eRpc.scan.package") == null ||"".equals(PropertiesUtil.getConfig("eRpc.scan.package").trim())){
 			throw new ERpcException("eRpc.scan.package config is null");
 		}
-		eRpcAnnotations = new ArrayList<Class>(Arrays.asList(new Class[]{EServce.class,EServceClient.class}));
+		eRpcAnnotations = new ArrayList<Class>(Arrays.asList(new Class[]{EServceClient.class}));
 		scanPathPackages = PropertiesUtil.getConfig("eRpc.scan.package").trim().split(",");
 		try {
 			scan();

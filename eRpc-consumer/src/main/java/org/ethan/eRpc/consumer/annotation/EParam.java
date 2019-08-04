@@ -7,14 +7,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 在interface上使用改注解，代表改接口为eRpc接口。
- * 框架会解析该interface，使用动态代理生成其实现类，并进行eRpc调用
+ * 表示该注解的参数的参数名，
+ * 默认情况下框架会使用参数的形参的名字作为参数名，若形参名字与接口参数不一致，可使用该注解
  * @author Administrator
  *
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface EServceClient {
-	
+public @interface EParam {
+	String name();
 }

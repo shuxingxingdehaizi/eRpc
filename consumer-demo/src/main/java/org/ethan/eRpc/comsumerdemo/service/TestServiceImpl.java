@@ -1,5 +1,6 @@
 package org.ethan.eRpc.comsumerdemo.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.ethan.eRpc.common.exception.ERpcException;
@@ -41,6 +42,13 @@ public class TestServiceImpl implements ApplicationContextAware{
 	
 	public Map<String,Object>test2(String p1,int p2){
 		return test2Sao.rpcTest2(p1, p2);
+	}
+	
+	public Map<String,Object>test3(String name,int age){
+		Map<String,Object>params = new HashMap<String, Object>();
+		params.put("name", name);
+		params.put("age", age);
+		return test2Sao.test3(params);
 	}
 
 	@Override

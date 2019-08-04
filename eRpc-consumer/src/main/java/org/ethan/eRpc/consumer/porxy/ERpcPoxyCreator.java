@@ -42,12 +42,12 @@ public class ERpcPoxyCreator implements BeanDefinitionRegistryPostProcessor {
 	 // 注册Bean实例，使用supply接口, 可以创建一个实例，并主动注入一些依赖的Bean；当这个实例对象是通过动态代理这种框架生成时，就比较有用了
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 		// TODO Auto-generated method stub
-		 BeanDefinitionBuilder builder1 = BeanDefinitionBuilder.genericBeanDefinition(UserService.class, () -> {
-			 	UserServiceCglib cglib = new UserServiceCglib();
-		        UserService bookFacedImpl = (UserService) cglib.getInstance(UserService.class);
-		        return bookFacedImpl;
-	        });
-        ((DefaultListableBeanFactory) beanFactory).registerBeanDefinition("userService", builder1.getRawBeanDefinition());
+//		 BeanDefinitionBuilder builder1 = BeanDefinitionBuilder.genericBeanDefinition(UserService.class, () -> {
+//			 	UserServiceCglib cglib = new UserServiceCglib();
+//		        UserService bookFacedImpl = (UserService) cglib.getInstance(UserService.class);
+//		        return bookFacedImpl;
+//	        });
+//        ((DefaultListableBeanFactory) beanFactory).registerBeanDefinition("userService", builder1.getRawBeanDefinition());
         
         List<Class> eServceClients = scanner.getClassListWithAnnotation(EServceClient.class);
         if(eServceClients == null){

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.ethan.eRpc.core.annotation.EService;
+import org.ethan.eRpc.providerdemo.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,17 @@ public class TestController {
 		result.put("responseCode", "000000");
 		result.put("resultMsg", "success");
 		result.put("data", "Hi there,This is rpcTest2 provider, you just said :"+p1+"--"+p2);
+		return result;
+	}
+	
+	@RequestMapping("/test3")
+	@EService(name="rpcTest3",verion="2.0")
+	public Map<String,Object>test3(User user){
+		Map<String,Object> result = new HashMap<String, Object>();
+		
+		result.put("responseCode", "000000");
+		result.put("resultMsg", "success");
+		result.put("data", "Hello "+user.getName()+", your age is "+user.getAge());
 		return result;
 	}
 }

@@ -41,7 +41,7 @@ public class Server implements InitializingBean,DisposableBean{
 	}
 	
 	public void start() throws InterruptedException {
-		System.out.println("=============Begin to start socket server=============");
+		System.out.println("Begin to start socket server");
 		long startTime = System.currentTimeMillis();
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		

@@ -3,6 +3,7 @@ package org.ethan.eRpc.comsumerdemo.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.comsumerdemo.sao.Test2Sao;
 import org.ethan.eRpc.comsumerdemo.sao.TestSao;
@@ -44,7 +45,8 @@ public class TestServiceImpl implements ApplicationContextAware{
 		return test2Sao.rpcTest2(p1, p2);
 	}
 	
-	public Map<String,Object>test3(String name,int age){
+	public Map<String,Object>test3(String name,int age,String traceId){
+		ERpcThreadLocal.add("traceId", traceId);
 		Map<String,Object>params = new HashMap<String, Object>();
 		params.put("name", name);
 		params.put("age", age);

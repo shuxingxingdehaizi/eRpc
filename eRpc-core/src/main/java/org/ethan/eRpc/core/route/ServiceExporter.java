@@ -42,7 +42,10 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 	@Override
 	public void destroy() throws Exception {
 		// TODO Auto-generated method stub
-		
+		List<org.ethan.eRpc.core.exporter.ServiceExporter> exporters = exporterFactory.getExporters();
+		for(org.ethan.eRpc.core.exporter.ServiceExporter export : exporters) {
+			export.unexportAll();
+		}
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 	private void exportService() throws ERpcException {
 		Map<String,Object>controllers = applicationContext.getBeansWithAnnotation(Controller.class);
 		if(controllers == null || controllers.isEmpty()) {
-			
+			logger.info("No eRpc service to export!");
 		}else {
 			List<org.ethan.eRpc.core.exporter.ServiceExporter> exporters = exporterFactory.getExporters();
 			for(Map.Entry<String, Object>ent : controllers.entrySet()) {
@@ -81,7 +84,7 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 							if(ps != null && ps.length > 0) {
 								List<ServiceBean.Param>params = new ArrayList<ServiceBean.Param>();
 								for(Parameter p : ps) {
-									params.add(new ServiceBean.Param(p.getName(),p.getClass().getName()));
+									params.add(new ServiceBean.Param(p.getName(),p.getParameterizedType().getTypeName()));
 								}
 								service.setParams(params);
 							}
@@ -109,8 +112,5 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 				
 			}
 		}
-		
-		
 	}
-	
 }

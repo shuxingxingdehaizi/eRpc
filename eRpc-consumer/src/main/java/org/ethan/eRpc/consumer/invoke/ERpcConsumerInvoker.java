@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import org.ethan.eRpc.common.bean.ERpcRequest;
 import org.ethan.eRpc.common.bean.ERpcResponse;
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
 import org.ethan.eRpc.common.bean.Host;
 import org.ethan.eRpc.common.bean.ServiceBean;
 import org.ethan.eRpc.common.exception.ERpcException;
@@ -118,9 +119,11 @@ public class ERpcConsumerInvoker implements InitializingBean,ApplicationContextA
 		request.setHeader(header);
 		request.setBody(serializer.reqBodySerialize(params));
 		
-		ERpcFuture future = FutureContainer.createFuture(10000L,eRpcId);
+		request.addAttachment("traceId", ERpcThreadLocal.get("traceId"));
+		
+		FutureContainer.createFuture(10000L,eRpcId);
 		Client.getClient().sendRequest(host.getIp(), host.getPort(), serializer.reqSerialize(request));
-		ERpcResponse response =  future.get();
+		ERpcResponse response =  FutureContainer.getResponse(eRpcId);
 		return serializer.respBodyDeSerialize(response.getBody(), returnType);
 	}
 

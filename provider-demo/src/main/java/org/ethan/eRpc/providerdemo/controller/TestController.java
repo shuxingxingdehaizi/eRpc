@@ -3,6 +3,7 @@ package org.ethan.eRpc.providerdemo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
 import org.ethan.eRpc.core.annotation.EService;
 import org.ethan.eRpc.providerdemo.entity.User;
 import org.springframework.stereotype.Controller;
@@ -37,10 +38,10 @@ public class TestController {
 	@EService(name="rpcTest3",verion="2.0")
 	public Map<String,Object>test3(User user){
 		Map<String,Object> result = new HashMap<String, Object>();
-		
 		result.put("responseCode", "000000");
 		result.put("resultMsg", "success");
 		result.put("data", "Hello "+user.getName()+", your age is "+user.getAge());
+		System.out.println("traceId="+ERpcThreadLocal.get("traceId"));
 		return result;
 	}
 }

@@ -26,7 +26,7 @@ public class TestController {
 	}
 	
 	@RequestMapping("/beanTest3")
-	public Object eRpcTest3(String name,int age) {
-		return testService.test3(name, age);
+	public Object eRpcTest3(String name,int age,String traceId) {
+		return testService.test3(name, age,traceId);
 	}
 }

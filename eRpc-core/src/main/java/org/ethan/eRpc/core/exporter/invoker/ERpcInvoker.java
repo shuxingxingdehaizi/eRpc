@@ -24,20 +24,10 @@ public class ERpcInvoker {
 	
 	static final Logger logger = LoggerFactory.getLogger(ERpcInvoker.class);
 	
-	@Autowired
-	private ExporterFactory exporterFactory;
-	
 	public void invoke(ERpcRequestContext eRpcRequestContext) throws ERpcException{
 		ApplicationContext springContext = eRpcRequestContext.getSpringContext();
+		ServiceBean serviceBean = eRpcRequestContext.getServiceBean();
 		
-		ERpcRequest eRpcRequest = eRpcRequestContext.getRequest();
-		String serviceName = eRpcRequest.getHeader().getServiceName();
-		String version = eRpcRequest.getHeader().getVersion();
-		
-		ServiceBean serviceBean = exporterFactory.getLocalExporter().getServiceBean(serviceName, version);
-		if(serviceBean == null) {
-			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
-		}
 		Object controller = null;
 		try {
 			controller = springContext.getBean(serviceBean.getBeanName());
@@ -53,10 +43,7 @@ public class ERpcInvoker {
 		Method serviceMethod = serviceBean.getServiceMethod();
 		
 		try {
-			Object[] params = eRpcRequestContext.getSerializer().reqBodyDeSerialize(serviceBean.getParams(), eRpcRequest.getBody());
-			
-			Object result = serviceMethod.invoke(controller, params);
-			
+			Object result = serviceMethod.invoke(controller, eRpcRequestContext.getRequest().getRequestParam());
 			
 			eRpcRequestContext.getResponse().setBody(eRpcRequestContext.getSerializer().respBodySerialize(result));
 			
@@ -85,7 +72,11 @@ public class ERpcInvoker {
 		header.setServiceName(request.getHeader().getServiceName());
 		header.seteRpcId(request.getHeader().geteRpcId());
 		
-		response.setAttachment(request.getAttachment());
+		if(request.attachmentKeys() != null) {
+			for(String key : request.attachmentKeys()) {
+				response.addAttachment(key, request.getAttachment(key));
+			}
+		}
 		response.setHeader(header);
 	}
 }

@@ -1,5 +1,10 @@
 package org.ethan.eRpc.core.exporter;
 
+import java.io.IOException;
+
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooKeeper;
 import org.ethan.eRpc.common.bean.ServiceBean;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.slf4j.Logger;
@@ -36,14 +41,24 @@ public class ZookeeperExporter implements ServiceExporter {
 
 	@Override
 	public void unexport(String serviceName) throws ERpcException {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void unexportAll() throws ERpcException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void getZkClient() throws IOException {
+		ZooKeeper zkClient = new ZooKeeper(zkAddr, 10000, new Watcher() {
+				@Override
+				public void process(WatchedEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+//		zkClient.co
 	}
 
 }

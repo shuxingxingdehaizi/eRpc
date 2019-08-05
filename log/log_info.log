@@ -1,0 +1,562 @@
+2019-08-05 10:43:49.814 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 12976 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 10:43:49.818 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 10:43:51.239 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 10:43:51.255 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 10:43:51.263 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 10:43:51.264 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 10:43:51.362 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 10:43:51.363 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1497 ms
+2019-08-05 10:43:51.427 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 10:43:51.427 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 10:43:51.433 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 10:43:51.433 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 10:43:51.446 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 10:43:51.446 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 10:43:51.447 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 10:43:51.447 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 10:43:51.447 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 10:43:51.447 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 10:44:03.966 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 26056 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 10:44:03.969 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 10:44:04.690 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 10:44:04.827 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 10:44:05.290 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 10:44:05.304 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 10:44:05.311 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 10:44:05.312 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 10:44:05.409 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 10:44:05.409 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1401 ms
+2019-08-05 10:44:05.471 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 10:44:05.748 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 10:44:05.896 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 10:44:05.920 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 10:44:05.923 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.404 seconds (JVM running for 2.913)
+2019-08-05 10:45:05.122 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 10:45:05.123 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 10:45:05.129 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2019-08-05 10:45:50.420 [http-nio-8080-exec-3] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 10:45:50.835 [http-nio-8080-exec-3] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 10:45:50.841 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 10:45:50.981 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - Begin to process ERpc request : {"attachment":{"startTime":1564973150966},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"ee355039-b0da-4c49-a75c-e5c7df4404f2","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"}}
+2019-08-05 10:46:07.986 [nioEventLoopGroup-2-1] INFO  o.e.eRpc.consumer.socket.handler.ERpcClientHandler - Response form server:{"attachment":{"startTime":1564973150966},"header":{"eRpcId":"ee355039-b0da-4c49-a75c-e5c7df4404f2","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 10:47:04.669 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - Begin to process ERpc request : {"attachment":{"startTime":1564973224669},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"2cbb9e5b-aae0-4609-bc25-a4a299803da7","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"}}
+2019-08-05 10:50:02.735 [nioEventLoopGroup-2-1] INFO  o.e.eRpc.consumer.socket.handler.ERpcClientHandler - Response form server:{"attachment":{"startTime":1564973224669},"header":{"eRpcId":"2cbb9e5b-aae0-4609-bc25-a4a299803da7","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 10:53:16.547 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 14088 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 10:53:16.550 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 10:53:17.873 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 10:53:17.888 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 10:53:17.897 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 10:53:17.898 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 10:53:17.994 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 10:53:17.995 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1400 ms
+2019-08-05 10:53:18.066 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 10:53:18.066 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 10:53:18.076 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 10:53:18.077 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 10:53:53.309 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 10:53:53.309 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 10:54:05.204 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 10:54:05.204 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 10:54:05.204 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 10:54:05.204 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 10:54:59.893 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 22976 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 10:54:59.897 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 10:55:00.565 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 10:55:00.701 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 10:55:01.167 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 10:55:01.181 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 10:55:01.189 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 10:55:01.189 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 10:55:01.284 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 10:55:01.284 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1346 ms
+2019-08-05 10:55:01.337 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 10:55:01.598 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 10:55:01.753 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 10:55:01.779 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 10:55:01.782 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.332 seconds (JVM running for 2.885)
+2019-08-05 10:55:07.600 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 10:55:07.600 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 10:55:07.605 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2019-08-05 10:55:07.829 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 10:55:08.281 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 10:55:08.297 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 10:55:08.461 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - Begin to process ERpc request : {"attachment":{"startTime":1564973708440},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"3e9a35cb-9e9f-4519-bb6b-979bc23d006a","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"}}
+2019-08-05 10:55:08.472 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - ERpc response in 25ms :{"attachment":{"startTime":1564973708440},"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"3e9a35cb-9e9f-4519-bb6b-979bc23d006a","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 10:55:08.500 [nioEventLoopGroup-2-1] INFO  o.e.eRpc.consumer.socket.handler.ERpcClientHandler - Response form server:{"attachment":{"startTime":1564973708440},"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"3e9a35cb-9e9f-4519-bb6b-979bc23d006a","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 17:15:04.755 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 21536 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:15:04.759 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:15:05.736 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:15:05.746 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:15:05.754 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:15:05.754 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:15:05.826 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:15:05.827 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1045 ms
+2019-08-05 17:15:05.873 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:15:05.873 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:15:05.875 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:15:05.875 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:15:05.885 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:15:05.885 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:15:05.885 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:15:05.885 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:15:05.886 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:15:05.886 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:16:07.117 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 26768 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:16:07.118 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:16:08.143 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:16:08.154 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:16:08.162 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:16:08.162 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:16:08.238 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:16:08.239 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1094 ms
+2019-08-05 17:16:08.284 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:16:08.285 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 17:16:08.285 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 17:16:08.285 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:16:08.286 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:16:08.286 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:16:08.295 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:16:08.295 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:16:08.296 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:16:08.296 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:16:08.296 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:16:08.296 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:17:37.441 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 22504 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:17:37.445 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:17:38.425 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:17:38.436 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:17:38.444 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:17:38.444 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:17:38.519 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:17:38.519 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1050 ms
+2019-08-05 17:17:38.566 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:17:38.567 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 17:17:38.567 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 17:17:38.567 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:17:38.568 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:17:38.568 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:17:38.577 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:17:38.577 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:17:38.577 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:17:38.578 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:17:38.578 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:17:38.578 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:44:19.343 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 9960 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 17:44:19.346 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:44:20.083 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 17:44:20.221 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 17:44:20.714 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 17:44:20.729 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 17:44:20.737 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:44:20.737 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:44:20.842 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:44:20.842 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1455 ms
+2019-08-05 17:44:20.908 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 17:44:21.237 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 17:44:21.394 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 17:44:21.422 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 17:44:21.425 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.502 seconds (JVM running for 2.958)
+2019-08-05 17:44:37.278 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 18944 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:44:37.281 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:44:38.627 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:44:38.642 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:44:38.649 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:44:38.650 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:44:38.746 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:44:38.747 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1425 ms
+2019-08-05 17:44:38.812 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:44:38.812 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 17:44:38.812 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 17:44:38.812 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:44:38.814 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:44:38.814 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:44:38.826 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:44:38.826 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:44:38.826 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:44:38.826 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:44:38.827 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:44:38.827 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:44:43.920 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 17:44:44.052 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:44:44.075 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9090 (http) with context path ''
+2019-08-05 17:44:44.079 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Started ProviderDemoApplication in 7.21 seconds (JVM running for 7.663)
+2019-08-05 17:44:58.050 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 18572 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:44:58.053 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:44:59.352 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:44:59.366 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:44:59.374 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:44:59.374 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:44:59.483 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:44:59.483 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1388 ms
+2019-08-05 17:44:59.560 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:44:59.561 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 17:44:59.561 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 17:44:59.561 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:44:59.562 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:44:59.564 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:44:59.582 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:44:59.582 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:44:59.583 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:44:59.583 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:44:59.583 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:44:59.583 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:45:58.488 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 17:45:58.488 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 17:45:58.495 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2019-08-05 17:47:40.620 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 14672 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 17:47:40.622 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:47:41.258 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 17:47:41.417 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 17:47:41.943 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 17:47:41.958 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 17:47:41.966 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:47:41.966 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:47:42.066 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:47:42.066 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1402 ms
+2019-08-05 17:47:42.131 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 17:47:42.409 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 17:47:42.572 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 17:47:42.598 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 17:47:42.602 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.404 seconds (JVM running for 2.855)
+2019-08-05 17:47:46.952 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 20756 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 17:47:46.956 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 17:47:48.261 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 17:47:48.276 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 17:47:48.284 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 17:47:48.285 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 17:47:48.392 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 17:47:48.392 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1397 ms
+2019-08-05 17:47:48.457 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 17:47:48.457 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 17:47:48.457 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 17:47:48.457 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 17:47:48.459 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 17:47:48.460 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 17:47:48.473 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 17:47:48.473 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 17:47:48.473 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 17:47:48.473 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 17:47:48.474 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 17:47:48.474 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 17:47:54.133 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 17:47:54.133 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 17:47:54.139 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2019-08-05 17:47:54.371 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 17:47:54.845 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 17:47:54.861 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 17:47:54.963 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 17:52:51.938 [http-nio-8080-exec-5] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 17:52:51.945 [http-nio-8080-exec-5] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 17:52:51.949 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 17:53:14.950 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:01:13.126 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 24216 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:01:13.130 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:01:14.216 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:01:14.227 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:01:14.234 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:01:14.235 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:01:14.307 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:01:14.308 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1154 ms
+2019-08-05 18:01:14.355 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:01:14.356 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:01:14.356 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:01:14.356 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:01:14.357 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:01:14.357 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:01:14.369 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:01:14.369 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:01:14.370 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:01:14.370 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:01:14.370 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:01:14.370 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:01:20.949 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 14916 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:01:20.953 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:01:21.604 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:01:21.749 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:01:22.216 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:01:22.231 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:01:22.238 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:01:22.239 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:01:22.333 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:01:22.333 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1340 ms
+2019-08-05 18:01:22.397 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:01:22.657 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:01:22.805 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:01:22.829 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 18:01:22.831 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.316 seconds (JVM running for 2.885)
+2019-08-05 18:01:54.012 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 18:01:54.013 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 18:01:54.018 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2019-08-05 18:01:54.240 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:01:54.659 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:01:54.666 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:01:54.749 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:02:53.650 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 25524 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:02:53.654 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:02:54.969 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:02:54.985 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:02:54.992 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:02:54.993 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:02:55.085 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:02:55.085 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1389 ms
+2019-08-05 18:02:55.158 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:02:55.158 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:02:55.158 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:02:55.158 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:02:55.167 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:02:55.168 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:02:55.184 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:02:55.185 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:02:55.185 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:02:55.185 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:02:55.185 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:02:55.185 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:02:59.547 [http-nio-8080-exec-2] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:02:59.553 [http-nio-8080-exec-2] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:02:59.575 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:05:46.938 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 27900 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:05:46.942 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:05:48.256 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:05:48.273 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:05:48.282 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:05:48.283 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:05:48.391 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:05:48.391 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1407 ms
+2019-08-05 18:05:48.464 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:05:48.464 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:05:48.464 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:05:48.464 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:05:48.471 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:05:48.472 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:05:48.488 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:05:48.488 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:05:48.489 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:05:48.489 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:05:48.489 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:05:48.489 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:05:53.880 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 9960 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:05:53.883 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:05:54.566 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:05:54.696 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:05:55.168 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:05:55.183 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:05:55.191 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:05:55.191 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:05:55.285 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:05:55.285 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1364 ms
+2019-08-05 18:05:55.355 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:05:55.617 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:05:55.766 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:05:55.791 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 18:05:55.793 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.335 seconds (JVM running for 2.789)
+2019-08-05 18:06:12.605 [http-nio-8080-exec-2] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 18:06:12.605 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 18:06:12.610 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2019-08-05 18:06:12.862 [http-nio-8080-exec-2] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:06:13.311 [http-nio-8080-exec-2] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:06:13.326 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:06:41.310 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:07:47.464 [http-nio-8080-exec-5] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:07:47.469 [http-nio-8080-exec-5] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:07:47.472 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:08:14.613 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:08:42.663 [http-nio-8080-exec-8] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:08:42.668 [http-nio-8080-exec-8] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:08:42.670 [nioEventLoopGroup-3-3] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:09:52.804 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 21996 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:09:52.807 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:09:54.260 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:09:54.277 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:09:54.287 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:09:54.288 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:09:54.389 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:09:54.390 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1542 ms
+2019-08-05 18:09:54.483 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:09:54.484 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:09:54.484 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:09:54.484 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:09:54.493 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:09:54.495 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:09:54.509 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:09:54.510 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:09:54.510 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:09:54.510 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:09:54.510 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:09:54.510 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:09:59.212 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 26788 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:09:59.215 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:09:59.881 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:10:00.008 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:10:00.502 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:10:00.519 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:10:00.527 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:10:00.527 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:10:00.628 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:10:00.629 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1375 ms
+2019-08-05 18:10:00.694 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:10:00.973 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:10:01.129 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:10:01.152 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 18:10:01.155 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.361 seconds (JVM running for 2.823)
+2019-08-05 18:10:03.140 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 18:10:03.141 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 18:10:03.147 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2019-08-05 18:10:03.364 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:10:03.817 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:10:03.834 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:12:42.873 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 15516 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:12:42.875 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:12:43.916 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:12:43.927 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:12:43.935 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:12:43.936 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:12:44.016 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:12:44.016 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1114 ms
+2019-08-05 18:12:44.072 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:12:44.073 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:12:44.073 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:12:44.073 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:12:44.075 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:12:44.075 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:12:44.088 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:12:44.088 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:12:44.088 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:12:44.089 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:12:44.089 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:12:44.089 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:12:48.807 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 27680 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:12:48.809 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:12:49.316 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:12:49.405 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:12:49.837 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:12:49.848 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:12:49.856 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:12:49.856 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:12:49.929 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:12:49.929 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1096 ms
+2019-08-05 18:12:49.971 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:12:50.115 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:12:50.251 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:12:50.264 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:12:50.264 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2019-08-05 18:12:50.268 [main] INFO  org.apache.catalina.util.LifecycleBase - The stop() method was called on component [StandardServer[-1]] after stop() had already been called. The second call will be ignored.
+2019-08-05 18:12:50.269 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:12:50.269 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:12:50.270 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-08-05 18:12:50.273 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:13:03.222 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 26880 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:13:03.226 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:13:03.905 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:13:04.040 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:13:04.521 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:13:04.537 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:13:04.544 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:13:04.545 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:13:04.651 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:13:04.651 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1387 ms
+2019-08-05 18:13:04.732 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:13:05.052 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:13:05.202 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:13:05.225 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 18:13:05.228 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.445 seconds (JVM running for 2.912)
+2019-08-05 18:13:11.749 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 21220 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:13:11.752 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:13:13.033 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:13:13.048 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:13:13.058 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:13:13.058 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:13:13.160 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:13:13.161 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1371 ms
+2019-08-05 18:13:13.241 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:13:13.241 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:13:13.241 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:13:13.241 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:13:13.248 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:13:13.249 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:13:13.261 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:13:13.261 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:13:13.262 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:13:13.262 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:13:13.262 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:13:13.262 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:13:27.633 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 18:13:27.633 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 18:13:27.637 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2019-08-05 18:13:27.838 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:13:28.280 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:13:28.293 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:13:34.226 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - 11111111111111122222222222222222Begin to process ERpc request : {"attachment":{"traceId":"11111111111111122222222222222222","startTime":1565000014204},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"8a02b573-e59b-4ab0-9a5a-281002c28ee0","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"},"requestParam":[{"age":29,"name":"ethan"}]}
+2019-08-05 18:13:34.232 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - ERpc response in 23ms :{"attachmentKeys":["traceId","startTime"],"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"8a02b573-e59b-4ab0-9a5a-281002c28ee0","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 18:13:34.264 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:14:20.292 [http-nio-8080-exec-4] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:14:20.296 [http-nio-8080-exec-4] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:14:20.299 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:14:20.299 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - 11111111111111122222222222222222Begin to process ERpc request : {"attachment":{"traceId":"11111111111111122222222222222222","startTime":1565000060299},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"1d77b27f-a096-424f-aca3-91f231046629","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"},"requestParam":[{"age":29,"name":"ethan"}]}
+2019-08-05 18:14:20.300 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - ERpc response in 1ms :{"attachmentKeys":["traceId","startTime"],"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"1d77b27f-a096-424f-aca3-91f231046629","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 18:14:20.302 [nioEventLoopGroup-3-2] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Channel deactivated!
+2019-08-05 18:20:16.811 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 21260 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:20:16.815 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:20:18.135 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:20:18.150 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:20:18.157 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:20:18.158 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:20:18.265 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:20:18.266 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1403 ms
+2019-08-05 18:20:18.335 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:20:18.335 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:20:18.336 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:20:18.336 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:20:18.337 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:20:18.338 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:20:18.351 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:20:18.352 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper
+2019-08-05 18:20:18.352 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:20:18.352 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:20:18.352 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:20:18.352 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:20:23.108 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Starting ConsumerDemoApplication on WIN-T1VJ0PHFT0F with PID 27492 (F:\mygit\eRpc\consumer-demo\target\classes started by Admin in F:\mygit\eRpc\consumer-demo)
+2019-08-05 18:20:23.111 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:20:23.787 [main] INFO  o.s.c.annotation.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'ERpcPoxyCreator' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2019-08-05 18:20:23.928 [main] INFO  org.ethan.eRpc.consumer.porxy.ERpcPoxyCreator - Add bean [test2Sao]into spring context
+2019-08-05 18:20:24.390 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-08-05 18:20:24.404 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:20:24.412 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:20:24.412 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:20:24.507 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:20:24.508 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1358 ms
+2019-08-05 18:20:24.567 [main] INFO  org.ethan.eRpc.consumer.invoke.ERpcConsumerInvoker - ERpc Provider not enable
+2019-08-05 18:20:24.839 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-05 18:20:24.994 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-08-05 18:20:25.022 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-05 18:20:25.025 [main] INFO  o.ethan.eRpc.comsumerdemo.ConsumerDemoApplication - Started ConsumerDemoApplication in 2.353 seconds (JVM running for 2.813)
+2019-08-05 18:20:42.602 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-05 18:20:42.603 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2019-08-05 18:20:42.608 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2019-08-05 18:20:42.816 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connectting to server 127.0.0.1:6666
+2019-08-05 18:20:43.267 [http-nio-8080-exec-1] INFO  org.ethan.eRpc.consumer.socket.Client - connected
+2019-08-05 18:20:43.282 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 127.0.0.1/127.0.0.1:6666 Chanel Activated!
+2019-08-05 18:20:43.420 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - 11111111111111122222222222222222Begin to process ERpc request : {"attachment":{"traceId":"11111111111111122222222222222222","startTime":1565000443400},"body":"{\"user\":{\"name\":\"ethan\",\"age\":29}}","header":{"eRpcId":"d07ad852-16b5-4755-b835-fa2be49b99d9","serverIp":"127.0.0.1","serviceName":"rpcTest3","version":"2.0"},"requestParam":[{"age":29,"name":"ethan"}]}
+2019-08-05 18:20:43.424 [nioEventLoopGroup-3-1] INFO  org.ethan.eRpc.providerdemo.filter.TestERpcFilter - ERpc response in 21ms :{"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"d07ad852-16b5-4755-b835-fa2be49b99d9","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 18:20:43.448 [nioEventLoopGroup-2-1] INFO  o.e.eRpc.consumer.socket.handler.ERpcClientHandler - Response form server:{"body":"{\"data\":\"Hello ethan, your age is 29\",\"responseCode\":\"000000\",\"resultMsg\":\"success\"}","header":{"eRpcId":"d07ad852-16b5-4755-b835-fa2be49b99d9","serverIp":"192.168.200.1","serviceName":"rpcTest3"}}
+2019-08-05 18:22:19.947 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - Starting ProviderDemoApplication on WIN-T1VJ0PHFT0F with PID 28088 (F:\mygit\eRpc\provider-demo\target\classes started by Admin in F:\mygit\eRpc\provider-demo)
+2019-08-05 18:22:19.950 [main] INFO  o.ethan.eRpc.providerdemo.ProviderDemoApplication - No active profile set, falling back to default profiles: default
+2019-08-05 18:22:21.061 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9090 (http)
+2019-08-05 18:22:21.076 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9090"]
+2019-08-05 18:22:21.083 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-08-05 18:22:21.084 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-05 18:22:21.162 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-08-05 18:22:21.162 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1188 ms
+2019-08-05 18:22:21.215 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain begin================
+2019-08-05 18:22:21.216 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 0:org.ethan.eRpc.providerdemo.filter.TestERpcFilter
+2019-08-05 18:22:21.216 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - 1:org.ethan.eRpc.providerdemo.filter.Test2ERpcFilter
+2019-08-05 18:22:21.216 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - ==============Filter chain end================
+2019-08-05 18:22:21.217 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.common.serialize.JSONSerialize] as requestDecorder
+2019-08-05 18:22:21.217 [main] INFO  org.ethan.eRpc.core.handler.ERpcServerHandler - Use [org.ethan.eRpc.core.route.DefaultIndicator] as routeIndicator
+2019-08-05 18:22:21.226 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to local
+2019-08-05 18:22:21.227 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest3---org.ethan.eRpc.providerdemo.controller.TestController.test3] to zookeeper
+2019-08-05 18:22:21.227 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to local
+2019-08-05 18:22:21.227 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest2---org.ethan.eRpc.providerdemo.controller.TestController.test2] to zookeeper
+2019-08-05 18:22:21.227 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to local
+2019-08-05 18:22:21.227 [main] INFO  org.ethan.eRpc.core.exporter.ServiceExporter - Export service [rpcTest1---org.ethan.eRpc.providerdemo.controller.TestController.test1] to zookeeper

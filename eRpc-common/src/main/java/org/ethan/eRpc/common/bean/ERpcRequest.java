@@ -3,6 +3,9 @@ package org.ethan.eRpc.common.bean;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import org.ethan.eRpc.common.exception.ERpcException;
 
 public class ERpcRequest implements Serializable{
 	
@@ -17,6 +20,11 @@ public class ERpcRequest implements Serializable{
 	 * 请求体
 	 */
 	private String body;
+	
+	/**
+	 * 请求体解码后的请求参数列表
+	 */
+	private Object[] requestParam;
 	
 	/**
 	 * 一些附属信息，会随着RPC调用一直传递下去
@@ -89,6 +97,32 @@ public class ERpcRequest implements Serializable{
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+	
+	public Object[] getRequestParam() {
+		return requestParam;
+	}
+
+	public void setRequestParam(Object[] requestParam) {
+		this.requestParam = requestParam;
+	}
+
+	public Set<String> attachmentKeys() {
+		return attachment == null ? null : attachment.keySet();
+	}
+	
+	public Object getAttachment(String key) {
+		return attachment == null ? null : attachment.get(key);
+	}
+
+	public void addAttachment(String key,Object value) throws ERpcException {
+		if(this.attachment == null) {
+			this.attachment = new HashMap<String, Object>();
+		}
+		if(this.attachment.containsKey(key)) {
+			throw new ERpcException("Attachment ["+key+"] is aleady exists!");
+		}
+		this.attachment.put(key, value);
 	}
 
 	public Map<String, Object> getAttachment() {

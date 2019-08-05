@@ -1,5 +1,7 @@
 package org.ethan.eRpc.providerdemo.filter;
 
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
+import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.core.context.ERpcRequestContext;
 import org.ethan.eRpc.core.filter.ERpcFilter;
 import org.ethan.eRpc.core.filter.ERpcFilterChain;
@@ -23,14 +25,20 @@ public class TestERpcFilter implements ERpcFilter {
 	@Override
 	public void preFilter(ERpcFilterChain chain, ERpcRequestContext context) {
 		// TODO Auto-generated method stub
-		context.getRequest().getAttachment().put("startTime", System.currentTimeMillis());
-		logger.info("Begin to process ERpc request : "+JSON.toJSONString(context.getRequest()));
+		try {
+			context.getRequest().addAttachment("startTime", System.currentTimeMillis());
+		} catch (ERpcException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		logger.info(ERpcThreadLocal.get("traceId")+"Begin to process ERpc request : "+JSON.toJSONString(context.getRequest()));
 	}
 
 	@Override
 	public void afterFilter(ERpcFilterChain chain, ERpcRequestContext context) {
 		// TODO Auto-generated method stub
-		logger.info("ERpc response in "+(System.currentTimeMillis()-(long)context.getRequest().getAttachment().get("startTime"))+"ms :"+JSON.toJSONString(context.getResponse()));
+		logger.info("ERpc response in "+(System.currentTimeMillis()-(long)context.getRequest().getAttachment("startTime"))+"ms :"+JSON.toJSONString(context.getResponse()));
 	}
 
 }

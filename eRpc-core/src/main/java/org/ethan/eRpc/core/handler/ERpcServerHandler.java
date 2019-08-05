@@ -1,6 +1,5 @@
 package org.ethan.eRpc.core.handler;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -8,22 +7,22 @@ import java.util.Map;
 
 import org.ethan.eRpc.common.bean.ERpcRequest;
 import org.ethan.eRpc.common.bean.ERpcResponse;
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
+import org.ethan.eRpc.common.bean.ServiceBean;
+import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.exception.ERpcSerializeException;
 import org.ethan.eRpc.common.serialize.ERpcSerialize;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.context.ERpcRequestContext;
-import org.ethan.eRpc.core.context.SpringContextHolder;
+import org.ethan.eRpc.core.exporter.ExporterFactory;
 import org.ethan.eRpc.core.exporter.invoker.ERpcInvoker;
 import org.ethan.eRpc.core.filter.ERpcFilter;
 import org.ethan.eRpc.core.filter.ERpcFilterChain;
-import org.ethan.eRpc.core.route.ERpcRequestRouter;
 import org.ethan.eRpc.core.route.RouteIndicator;
-import org.ethan.eRpc.core.route.ServiceExporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -53,7 +52,8 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	@Autowired
 	private ERpcInvoker invoker;
 	
-	
+	@Autowired
+	private ExporterFactory exporterFactory;
 	
 	public ERpcServerHandler() {}
 
@@ -78,12 +78,25 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 		//1.读取请求,解码
 		ERpcRequest request = this.serializer.reqDeSerialize((ByteBuf)msg);
 		
+		//将traceId放入线程本地变量
+		ERpcThreadLocal.add("traceId", request.getAttachment("traceId"));
+		
+		String serviceName = request.getHeader().getServiceName();
+		String version = request.getHeader().getVersion();
+		
+		ServiceBean serviceBean = exporterFactory.getLocalExporter().getServiceBean(serviceName, version);
+		
+		if(serviceBean == null) {
+			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
+		}
+		
+		request.setRequestParam(serializer.reqBodyDeSerialize(serviceBean.getParams(), request.getBody()));
 		
 		ERpcResponse response = new ERpcResponse();
 		
 		
 		//2.组装请求上下文
-		ERpcRequestContext requestContext = new ERpcRequestContext(springContext,ctx,serializer,request,response);
+		ERpcRequestContext requestContext = new ERpcRequestContext(springContext,ctx,serializer,request,response,serviceBean);
 		
 		byte[] responseBytes = null;
 		try {
@@ -92,7 +105,6 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	        	ERpcFilterChain chain = new ERpcFilterChain(this.filters);
 	            chain.doPreFilter(chain, requestContext);
 	        }
-
 			
 			invoker.invoke(requestContext);
 			
@@ -114,6 +126,25 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
         //3.生成响应，发送至客户端
         ctx.channel().writeAndFlush(responseBytes).sync();
        
+	}
+	
+	private void reqDeSerialize(ByteBuf requestMsg,ERpcRequest request,ServiceBean serviceBean) throws ERpcSerializeException, ERpcException {
+		
+		request = this.serializer.reqDeSerialize(requestMsg);
+		
+		//将traceId放入线程本地变量
+		ERpcThreadLocal.add("traceId", request.getAttachment("traceId"));
+		
+		String serviceName = request.getHeader().getServiceName();
+		String version = request.getHeader().getVersion();
+		
+		serviceBean = exporterFactory.getLocalExporter().getServiceBean(serviceName, version);
+		
+		if(serviceBean == null) {
+			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
+		}
+		
+		request.setRequestParam(serializer.reqBodyDeSerialize(serviceBean.getParams(), request.getBody()));
 	}
 
 	@Override
@@ -151,7 +182,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 			});
         	logger.info("==============Filter chain begin================");
         	for(ERpcFilter f : filters) {
-        		System.out.println(f.getOrder()+":"+f.getClass().getName());
+        		logger.info(f.getOrder()+":"+f.getClass().getName());
         	}
         	logger.info("==============Filter chain end================");
         }else {

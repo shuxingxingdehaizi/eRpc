@@ -11,6 +11,7 @@ import java.util.Map;
 import org.ethan.eRpc.common.bean.Host;
 import org.ethan.eRpc.common.bean.ServiceBean;
 import org.ethan.eRpc.common.exception.ERpcException;
+import org.ethan.eRpc.common.net.NetUtil;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.annotation.EService;
 import org.ethan.eRpc.core.exporter.ExporterFactory;
@@ -89,18 +90,12 @@ public class ServiceExporter implements InitializingBean,DisposableBean,Applicat
 								service.setParams(params);
 							}
 							
-							InetAddress addr;
-							try {
-								addr = InetAddress.getLocalHost();
-							} catch (UnknownHostException e) {
-								// TODO Auto-generated catch block
-								logger.error("Error occurs when getLocalHost",e);
-								throw new ERpcException("Error occurs when getLocalHost",e);
-							}
+							
 							Host provider = new Host(); 
 							provider.setApplicationName(PropertiesUtil.getConfig("applicationName"));
-							provider.setHostName(addr.getHostName().toString());
-							provider.setIp(addr.getHostAddress().toString());
+							provider.setHostName(NetUtil.getHostName());
+							provider.setIp(NetUtil.getHostIP());
+							provider.setPort(Integer.parseInt(PropertiesUtil.getConfig("port")));
 							service.addProvider(provider);
 							
 							for(org.ethan.eRpc.core.exporter.ServiceExporter export : exporters) {

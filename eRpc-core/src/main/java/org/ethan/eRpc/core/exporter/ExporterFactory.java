@@ -1,8 +1,10 @@
 package org.ethan.eRpc.core.exporter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.zookeeper.KeeperException;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,12 @@ public class ExporterFactory {
 		localExporter = new LocalExporter();
 		
 		if(registryCenterAddr.startsWith("zookeeper://")) {
-			remoteExpoeter = new ZookeeperExporter(registryCenterAddr);
+			try {
+				remoteExpoeter = new ZookeeperExporter(registryCenterAddr.replace("zookeeper://", ""));
+			} catch (IOException | KeeperException | InterruptedException e) {
+				// TODO Auto-generated catch block
+				throw new ERpcException("Error occurs when get ZookeeperExporter",e);
+			}
 		}else if(registryCenterAddr.startsWith("nacos://")) {
 			remoteExpoeter = new NacosExporter(registryCenterAddr);
 		}else {

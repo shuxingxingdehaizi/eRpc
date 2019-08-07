@@ -181,7 +181,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 				}
 			});
         	logger.info("==============Filter chain begin================");
-        	for(ERpcFilter f : filters) {
+        	for(ERpcFilter f : filters) { 
         		logger.info(f.getOrder()+":"+f.getClass().getName());
         	}
         	logger.info("==============Filter chain end================");

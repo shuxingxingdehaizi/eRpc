@@ -2560,3 +2560,42 @@ java.lang.ArrayIndexOutOfBoundsException: -1
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:745)
+2019-08-08 19:45:21.017 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.ClassCastException: org.ethan.eRpc.common.bean.Host cannot be cast to java.lang.String
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.removedProvider(ProviderCacheZkImpl.java:179)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.access$5(ProviderCacheZkImpl.java:171)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl$6.processResult(ProviderCacheZkImpl.java:155)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:581)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)
+2019-08-08 19:45:21.018 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.ClassCastException: org.ethan.eRpc.common.bean.Host cannot be cast to java.lang.String
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.removedProvider(ProviderCacheZkImpl.java:179)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.access$5(ProviderCacheZkImpl.java:171)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl$6.processResult(ProviderCacheZkImpl.java:155)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:581)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)
+2019-08-08 19:45:21.018 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.ClassCastException: org.ethan.eRpc.common.bean.Host cannot be cast to java.lang.String
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.removedProvider(ProviderCacheZkImpl.java:179)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl.access$5(ProviderCacheZkImpl.java:171)
+	at org.ethan.eRpc.consumer.cache.ProviderCacheZkImpl$6.processResult(ProviderCacheZkImpl.java:155)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:581)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)
+2019-08-08 20:07:51.192 [main-EventThread] ERROR org.ethan.eRpc.core.exporter.ServiceExporter - service[rpcTest1]with version[1.0]has aleady exported by current host
+2019-08-08 20:07:51.193 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.RuntimeException: service[rpcTest1]with version[1.0]has aleady exported by current host
+	at org.ethan.eRpc.core.exporter.ZookeeperExporter$2.processResult(ZookeeperExporter.java:133)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:605)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)
+2019-08-08 20:07:51.216 [main-EventThread] ERROR org.ethan.eRpc.core.exporter.ServiceExporter - service[rpcTest3]with version[2.0]has aleady exported by current host
+2019-08-08 20:07:51.217 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.RuntimeException: service[rpcTest3]with version[2.0]has aleady exported by current host
+	at org.ethan.eRpc.core.exporter.ZookeeperExporter$2.processResult(ZookeeperExporter.java:133)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:605)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)
+2019-08-08 20:07:51.217 [main-EventThread] ERROR org.ethan.eRpc.core.exporter.ServiceExporter - service[rpcTest2]with version[1.0]has aleady exported by current host
+2019-08-08 20:07:51.217 [main-EventThread] ERROR org.apache.zookeeper.ClientCnxn - Caught unexpected throwable
+java.lang.RuntimeException: service[rpcTest2]with version[1.0]has aleady exported by current host
+	at org.ethan.eRpc.core.exporter.ZookeeperExporter$2.processResult(ZookeeperExporter.java:133)
+	at org.apache.zookeeper.ClientCnxn$EventThread.processEvent(ClientCnxn.java:605)
+	at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:498)

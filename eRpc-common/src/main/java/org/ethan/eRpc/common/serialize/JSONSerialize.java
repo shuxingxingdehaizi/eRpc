@@ -1,7 +1,6 @@
 package org.ethan.eRpc.common.serialize;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,9 +69,6 @@ public class JSONSerialize implements ERpcSerialize {
 		if(params!= null) {
 			Object[] result = new Object[params.size()];
 			int index = 0;
-//			if(params.size() == 1 && pv instanceof Map) {
-//				
-//			}
 			for(ServiceBean.Param p : params) {
 				Object pv = paramMap.get(p.getName());
 				if(pv instanceof Map) {

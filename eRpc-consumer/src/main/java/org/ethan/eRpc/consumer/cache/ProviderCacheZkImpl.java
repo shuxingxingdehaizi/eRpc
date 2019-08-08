@@ -169,15 +169,15 @@ public class ProviderCacheZkImpl implements ProviderCache {
 	}
 	
 	private void removedProvider(String serviceName,String version,List<String> providerList) {
-		List<String>oldProviders = cache.get(serviceName).get(version) == null ? null : (List)cache.get(serviceName).get(version).get("providers");
+		List<Host>oldProviders = cache.get(serviceName).get(version) == null ? null : (List)cache.get(serviceName).get(version).get("providers");
 		if(oldProviders == null || oldProviders.isEmpty()) {
 			return;
 		}
 		if(providerList == null || providerList.isEmpty()) {
 			cache.get(serviceName).get(version).clear();
 		}else {
-			for(String oldProvider : oldProviders) {
-				if(!providerList.contains(oldProvider)) {
+			for(Host oldProvider : oldProviders) {
+				if(!providerList.contains(oldProvider.getIp()+":"+oldProvider.getPort())) {
 					oldProviders.remove(oldProvider);
 				}
 			}
@@ -204,7 +204,9 @@ public class ProviderCacheZkImpl implements ProviderCache {
 							cache.get(serviceName).get(version).put("providers", new ArrayList<String>());
 						}
 						Map<String,Object>info = ERpcURLParser.parseHostInfoJSON(jsonStr);
-						((List)cache.get(serviceName).get(version).get("providers")).add(info.get("host"));
+						if(!((List)cache.get(serviceName).get(version).get("providers")).contains(info.get("host"))) {
+							((List)cache.get(serviceName).get(version).get("providers")).add(info.get("host"));
+						}
 						cache.get(serviceName).get(version).put("timeout",((Map)info.get("params")).get("timeout"));
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block

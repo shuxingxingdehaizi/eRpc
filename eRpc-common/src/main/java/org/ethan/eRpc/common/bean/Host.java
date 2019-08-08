@@ -51,4 +51,21 @@ public class Host {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return (hostName+"."+ip+":"+port).hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(obj instanceof Host) {
+			Host src = (Host)obj;
+			return (hostName+"."+ip+":"+port).equals(src.getHostName()+"."+src.getIp()+":"+src.getPort());
+		}else {
+			return false;
+		}
+	}
 }

@@ -19,10 +19,7 @@ public class ErpcClientProxy implements MethodInterceptor{
 	
 	private static final String DEFAULT_VERSION = "1.0";
 
-	private Object target;
-
     public Object getInstance(Class type) {
-        this.target = target;
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(type);
         // 设置回调方法

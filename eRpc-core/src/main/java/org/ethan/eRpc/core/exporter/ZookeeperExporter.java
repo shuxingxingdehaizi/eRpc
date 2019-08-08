@@ -2,6 +2,8 @@ package org.ethan.eRpc.core.exporter;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.AsyncCallback.StringCallback;
@@ -75,7 +77,7 @@ public class ZookeeperExporter implements ServiceExporter {
 	public void export(ServiceBean service) throws ERpcException{
 		// TODO Auto-generated method stub
 		try {
-			String path =  ROOT+"/service/"+service.getName()+"/"+service.getVersion()+"/provider";
+			String path =  ROOT+"/service/"+service.getName()+"/"+service.getVersion()+"/providers";
 			ZkUtil.create(zk, path,new byte[0], CreateMode.PERSISTENT, new StringCallback() {
 				
 				@Override
@@ -93,7 +95,7 @@ public class ZookeeperExporter implements ServiceExporter {
 						exportProvider(service);
 						break;
 					case NODEEXISTS:
-						logger.info("Node "+path+" aleady exists");
+						exportProvider(service);
 						break;
 					default:
 						logger.error("something went wrong when export service ["+service.getName()+"]:"+KeeperException.create(Code.get(rc),path));
@@ -109,13 +111,13 @@ public class ZookeeperExporter implements ServiceExporter {
 	private void exportProvider(ServiceBean service) {
 		String path = null;
 		try {
-			path = ROOT+"/service/"+service.getName()+"/"+service.getVersion()+"/provider/"+NetUtil.getHostIP()+":"+PropertiesUtil.getConfig("port");
+			path = ROOT+"/service/"+service.getName()+"/"+service.getVersion()+"/providers/"+NetUtil.getHostIP()+":"+PropertiesUtil.getConfig("port");
 		} catch (ERpcException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
-			ZkUtil.create(zk, path, getERpcURL(service).getBytes("UTF-8"), CreateMode.EPHEMERAL, new StringCallback() {
+			ZkUtil.create(zk, path, JSON.toJSONString(getProviderDetail(service)).getBytes("UTF-8"), CreateMode.EPHEMERAL, new StringCallback() {
 				
 				@Override
 				public void processResult(int rc, String path, Object ctx, String name) {
@@ -127,29 +129,20 @@ public class ZookeeperExporter implements ServiceExporter {
 						logger.info("Exported service ["+service+"] to zookeeper");
 						break;
 					case NODEEXISTS:
-						logger.info("Node "+path+" aleady exists");
-						break;
+						logger.error("service["+service.getName()+"]with version["+service.getVersion()+"]has aleady exported by current host");
+						throw new RuntimeException("service["+service.getName()+"]with version["+service.getVersion()+"]has aleady exported by current host");
 					default:
-						logger.error("something went wrong when export service ["+service.getName()+"]:"+KeeperException.create(Code.get(rc),path));
-						break;
+						KeeperException ke = KeeperException.create(Code.get(rc),path);
+						logger.error("something went wrong when export service ["+service.getName()+"]:"+ke);
+						throw new RuntimeException(ke);
 					}
 					
 				}
 			}, service);
-		} catch (UnsupportedEncodingException e) {
+		} catch (UnsupportedEncodingException | ERpcException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	
-	
-	private void create(String path) {
-		for(String node : path.split("/")) {
-			if("".contentEquals(node)) {
-				continue;
-			}
-			
+			logger.error("Error occurs when exportProvider",e);
+			throw new RuntimeException("Error occurs when exportProvider",e);
 		}
 	}
 
@@ -163,6 +156,14 @@ public class ZookeeperExporter implements ServiceExporter {
 	public void unexportAll() throws ERpcException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Map<String,Object>getProviderDetail(ServiceBean service) throws ERpcException{
+		Map<String,Object>detail = new HashMap<String, Object>();
+		detail.put("url", getERpcURL(service));
+		detail.put("applicationName",applicationName);
+		detail.put("host",NetUtil.getHostName());
+		return detail;
 	}
 	
 	public String getERpcURL(ServiceBean service) {

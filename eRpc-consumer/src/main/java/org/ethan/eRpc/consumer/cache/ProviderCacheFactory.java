@@ -1,7 +1,11 @@
 package org.ethan.eRpc.consumer.cache;
 
+import java.io.IOException;
+
+import org.apache.zookeeper.KeeperException;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.util.PropertiesUtil;
+
 
 public class ProviderCacheFactory {
 	
@@ -15,7 +19,11 @@ public class ProviderCacheFactory {
 		}
 		
 		if(registryCenterAddr.startsWith("zookeeper://")) {
-			localCache = new ProviderCacheZkImpl();
+			try {
+				localCache = new ProviderCacheZkImpl(registryCenterAddr.replace("zookeeper://", ""));
+			} catch (IOException | KeeperException | InterruptedException e) {
+				throw new ERpcException(e);
+			}
 		}else if(registryCenterAddr.startsWith("nacos://")) {
 			localCache = new ProviderCacheNacosImpl();
 		}else {

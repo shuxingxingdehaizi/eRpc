@@ -13,7 +13,7 @@ public class ZkClient {
 	
 	private static void init(String zkAddr) throws IOException {
 		client = new ZooKeeper(zkAddr, 10000, new Watcher() {
-				@Override
+//				@Override
 				public void process(WatchedEvent arg0) {
 					// TODO Auto-generated method stub
 					

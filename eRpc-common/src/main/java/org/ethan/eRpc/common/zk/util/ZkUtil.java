@@ -24,13 +24,13 @@ public class ZkUtil {
 		create(client,path,content,createMode,calllback,realContext,1);
 	}
 	
-	private static void create(ZooKeeper client, String path, byte[] content, CreateMode createMode, StringCallback calllback,Map<String,Object> context, int index) {
+	private static void create(final ZooKeeper client, final String path, final byte[] content, final CreateMode createMode, final StringCallback calllback,final Map<String,Object> context,final int index) {
 		String[] paths = path.split("/");
 		String resultPath = "";
 		for(int i=0;i<index;i++) {
 			resultPath += "/"+paths[i+1];
 		}
-		String tp = resultPath;
+		final String tp = resultPath;
 		StringCallback stringCallback = null;
 		byte[] currentContent = new byte[0];
 		if(index >= paths.length-1) {
@@ -38,7 +38,7 @@ public class ZkUtil {
 			currentContent = content;
 		}else {
 			stringCallback = new StringCallback() {
-				@Override
+//				@Override
 				public void processResult(int rc, String path, Object ctx, String name) {
 					// TODO Auto-generated method stub
 					switch (Code.get(rc)) {
@@ -76,9 +76,6 @@ public class ZkUtil {
 			realPath += "/"+paths[i+1];
 			try {
 				client.create(realPath, new byte[0], Ids.OPEN_ACL_UNSAFE, createMode);
-//				if(realPath.equals("/a/b/c")) {
-//					throw new NodeExistsException(path+" esists!");
-//				}
 				System.out.println("create "+realPath);
 			} catch (NodeExistsException e) {
 				if(i == paths.length-2) {
@@ -86,19 +83,5 @@ public class ZkUtil {
 				}
 			}
 		}
-	}
-	
-	public static void main(String[] args) throws KeeperException, InterruptedException {
-		System.out.println("/a/b/c".split("/"));
-//		create(null,"/a/b/c",null);
-		
-		create(null, "/a/b/c/d",new byte[0], null, new StringCallback() {
-			
-			@Override
-			public void processResult(int rc, String path, Object ctx, String name) {
-				// TODO Auto-generated method stub
-				
-			}
-		},null);
 	}
 }

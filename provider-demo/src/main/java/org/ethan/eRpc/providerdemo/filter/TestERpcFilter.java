@@ -32,7 +32,7 @@ public class TestERpcFilter implements ERpcFilter {
 			e.printStackTrace();
 		}
 		
-		logger.info(ERpcThreadLocal.get("traceId")+"Begin to process ERpc request : "+JSON.toJSONString(context.getRequest()));
+		logger.info(ERpcThreadLocal.get("traceId")+"----Begin to process ERpc request : "+JSON.toJSONString(context.getRequest()));
 	}
 
 	@Override

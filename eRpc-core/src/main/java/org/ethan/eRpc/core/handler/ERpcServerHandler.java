@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.apache.log4j.MDC;
 import org.ethan.eRpc.common.bean.ERpcRequest;
 import org.ethan.eRpc.common.bean.ERpcResponse;
 import org.ethan.eRpc.common.bean.ERpcThreadLocal;
@@ -12,6 +14,7 @@ import org.ethan.eRpc.common.bean.ServiceBean;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.exception.ERpcSerializeException;
 import org.ethan.eRpc.common.serialize.ERpcSerialize;
+import org.ethan.eRpc.common.util.MDCUtil;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.context.ERpcRequestContext;
 import org.ethan.eRpc.core.exporter.ExporterFactory;
@@ -79,7 +82,7 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 		ERpcRequest request = this.serializer.reqDeSerialize((ByteBuf)msg);
 		
 		//将traceId放入线程本地变量
-		ERpcThreadLocal.add("traceId", request.getAttachment("traceId"));
+		MDCUtil.setTraceId((String)request.getAttachment("traceId"));
 		
 		String serviceName = request.getHeader().getServiceName();
 		String version = request.getHeader().getVersion();
@@ -127,25 +130,6 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
         ctx.channel().writeAndFlush(responseBytes).sync();
        
 	}
-	
-	private void reqDeSerialize(ByteBuf requestMsg,ERpcRequest request,ServiceBean serviceBean) throws ERpcSerializeException, ERpcException {
-		
-		request = this.serializer.reqDeSerialize(requestMsg);
-		
-		//将traceId放入线程本地变量
-		ERpcThreadLocal.add("traceId", request.getAttachment("traceId"));
-		
-		String serviceName = request.getHeader().getServiceName();
-		String version = request.getHeader().getVersion();
-		
-		serviceBean = exporterFactory.getLocalExporter().getServiceBean(serviceName, version);
-		
-		if(serviceBean == null) {
-			throw new ERpcException("No provider found for service["+serviceName+"] and version["+version+"]");
-		}
-		
-		request.setRequestParam(serializer.reqBodyDeSerialize(serviceBean.getParams(), request.getBody()));
-	}
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
@@ -157,13 +141,9 @@ public class ERpcServerHandler extends ChannelInboundHandlerAdapter implements I
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		// TODO Auto-generated method stub
 		ctx.close();
-	    System.out.println("Error occurs when handle request:" + cause.getMessage());
+		logger.error("Error occurs when handle request" , cause);
 	}
-	
-//	private void getSpringContext() {
-//		springContext = springContextHolder.getSpringApplicationContext();
-//	}
-//	
+
 	private void initFilterChain() {
         Map<String,ERpcFilter>filterMaps = springContext.getBeansOfType(ERpcFilter.class);
         if(filterMaps != null && !filterMaps.isEmpty()) {

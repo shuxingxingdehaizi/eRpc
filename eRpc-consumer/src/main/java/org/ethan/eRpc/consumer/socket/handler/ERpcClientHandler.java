@@ -1,8 +1,10 @@
 package org.ethan.eRpc.consumer.socket.handler;
 
 import org.ethan.eRpc.common.bean.ERpcResponse;
+import org.ethan.eRpc.common.bean.ERpcThreadLocal;
 import org.ethan.eRpc.common.exception.ERpcSerializeException;
 import org.ethan.eRpc.common.serialize.ERpcSerialize;
+import org.ethan.eRpc.common.util.MDCUtil;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.consumer.invoke.FutureContainer;
 import org.slf4j.Logger;
@@ -34,6 +36,7 @@ public class ERpcClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
 		byte[] con = new byte[msg.readableBytes()];
 		msg.readBytes(con);
 		ERpcResponse response = serializer.respDeSerialize(con);
+		MDCUtil.setTraceId((String)response.getAttachment("traceId"));
 		logger.info("Response form server:" + JSON.toJSONString(response));
         FutureContainer.getFuture(response.getHeader().geteRpcId()).setResponse(response);
 	}

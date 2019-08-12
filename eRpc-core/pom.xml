@@ -42,6 +42,12 @@
 			<groupId>org.ethan.eRpc</groupId>
 			<artifactId>eRpc-common</artifactId>
 			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+		          <groupId>ch.qos.logback</groupId>
+		          <artifactId>logback-classic</artifactId>
+		        </exclusion>
+			</exclusions>
 		</dependency>
 		
 	</dependencies>

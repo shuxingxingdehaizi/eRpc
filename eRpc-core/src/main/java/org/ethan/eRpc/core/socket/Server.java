@@ -8,6 +8,8 @@ import javax.net.ssl.SSLEngine;
 import org.ethan.eRpc.common.bean.socket.ssl.SSLContextFactory;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.core.handler.ERpcServerHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import io.netty.handler.ssl.SslHandler;
 @Component("eRpcServer")
 public class Server implements InitializingBean,DisposableBean{
 	
+	static final Logger logger = LoggerFactory.getLogger(Server.class);
+	
 	@Autowired
 	private ERpcServerHandler requestHandler;
 	
@@ -41,7 +45,7 @@ public class Server implements InitializingBean,DisposableBean{
 	}
 	
 	public void start() throws InterruptedException {
-		System.out.println("Begin to start socket server");
+		logger.info("Begin to start eRpc server");
 		long startTime = System.currentTimeMillis();
 		EventLoopGroup bossGroup = new NioEventLoopGroup();
 		
@@ -58,7 +62,7 @@ public class Server implements InitializingBean,DisposableBean{
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
 					// TODO Auto-generated method stub
-					System.out.println("Got a client connect request: Host:"+ch.localAddress().getHostName()+" Port:"+ch.localAddress().getPort());
+					logger.info("Got a client connect request: Host:"+ch.localAddress().getHostName()+" Port:"+ch.localAddress().getPort());
 					if(sslEnable) {
 				        SSLEngine engine = SSLContextFactory.getServerContext().createSSLEngine();
 				        engine.setUseClientMode(false);
@@ -78,9 +82,9 @@ public class Server implements InitializingBean,DisposableBean{
 			
 			ChannelFuture cf = sb.bind().sync();// 服务器异步创建绑定
 			if(sslEnable) {
-				System.out.println("Socket server start success in ["+(System.currentTimeMillis()-startTime)+"]ms and Listening on port :"+PORT+" with SSL enable");
+				logger.info("eRpc server start success in ["+(System.currentTimeMillis()-startTime)+"]ms and Listening on port :"+PORT+" with SSL enable");
 			}else {
-				System.out.println("Socket server start success in ["+(System.currentTimeMillis()-startTime)+"]ms and Listening on port :"+PORT);
+				logger.info("eRpc server start success in ["+(System.currentTimeMillis()-startTime)+"]ms and Listening on port :"+PORT);
 			}
 			
 			cf.channel().closeFuture().sync(); // 关闭服务器通道

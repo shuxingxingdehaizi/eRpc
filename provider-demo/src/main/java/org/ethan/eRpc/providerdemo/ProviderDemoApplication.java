@@ -1,6 +1,5 @@
 package org.ethan.eRpc.providerdemo;
 
-import org.ethan.eRpc.common.bean.ERpcThreadLocal;
 import org.ethan.eRpc.common.util.MDCUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

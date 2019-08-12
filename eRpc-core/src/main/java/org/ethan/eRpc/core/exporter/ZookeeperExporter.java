@@ -13,6 +13,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.ethan.eRpc.common.bean.ServiceBean;
 import org.ethan.eRpc.common.exception.ERpcException;
 import org.ethan.eRpc.common.net.NetUtil;
+import org.ethan.eRpc.common.util.MDCUtil;
 import org.ethan.eRpc.common.util.PropertiesUtil;
 import org.ethan.eRpc.common.zk.ZkClient;
 import org.ethan.eRpc.common.zk.util.ZkUtil;
@@ -83,16 +84,19 @@ public class ZookeeperExporter implements ServiceExporter {
 					switch (Code.get(rc)) {
 					case CONNECTIONLOSS:
 						try {
-							export((ServiceBean)ctx);
+							MDCUtil.setTraceId((String)ctx);
+							export(service);
 						} catch (ERpcException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						break;
 					case OK:
+						MDCUtil.setTraceId((String)ctx);
 						exportProvider(service);
 						break;
 					case NODEEXISTS:
+						MDCUtil.setTraceId((String)ctx);
 						exportProvider(service);
 						break;
 					default:
@@ -100,7 +104,7 @@ public class ZookeeperExporter implements ServiceExporter {
 						break;
 					}
 				}
-			},service);
+			}, MDCUtil.getTraceId());
 		} catch (Exception e) {
 			throw new ERpcException("Error occurs when export service"+JSON.toJSONString(service),e);
 		}
@@ -121,22 +125,26 @@ public class ZookeeperExporter implements ServiceExporter {
 				public void processResult(int rc, String path, Object ctx, String name) {
 					switch (Code.get(rc)) {
 					case CONNECTIONLOSS:
-						exportProvider((ServiceBean)ctx);
+						MDCUtil.setTraceId((String)ctx);
+						exportProvider(service);
 						break;
 					case OK:
+						MDCUtil.setTraceId((String)ctx);
 						logger.info("Exported service ["+service+"] to zookeeper");
 						break;
 					case NODEEXISTS:
+						MDCUtil.setTraceId((String)ctx);
 						logger.error("service["+service.getName()+"]with version["+service.getVersion()+"]has aleady exported by current host");
 						throw new RuntimeException("service["+service.getName()+"]with version["+service.getVersion()+"]has aleady exported by current host");
 					default:
+						MDCUtil.setTraceId((String)ctx);
 						KeeperException ke = KeeperException.create(Code.get(rc),path);
 						logger.error("something went wrong when export service ["+service.getName()+"]:"+ke);
 						throw new RuntimeException(ke);
 					}
 					
 				}
-			}, service);
+			}, MDCUtil.getTraceId());
 		} catch (UnsupportedEncodingException | ERpcException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error occurs when exportProvider",e);

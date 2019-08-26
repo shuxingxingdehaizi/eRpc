@@ -161,7 +161,11 @@ public class ZookeeperExporter implements ServiceExporter {
 	@Override
 	public void unexportAll() throws ERpcException {
 		// TODO Auto-generated method stub
-		
+		try {
+			zk.close();
+		} catch (InterruptedException e) {
+			throw new ERpcException("Error occurs when close connection with ZK",e);
+		}
 	}
 	
 	private Map<String,Object>getProviderDetail(ServiceBean service) throws ERpcException{

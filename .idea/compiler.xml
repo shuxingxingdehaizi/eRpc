@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eRpc-core" />
+        <module name="eRpc-common" />
+        <module name="provider-demo" />
+        <module name="consumer-demo" />
+        <module name="eRpc-consumer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="consumer-demo" target="1.8" />
+      <module name="eRpc" target="1.8" />
+      <module name="eRpc-common" target="1.8" />
+      <module name="eRpc-consumer" target="1.8" />
+      <module name="eRpc-core" target="1.8" />
+      <module name="provider-demo" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="consumer-demo" options="-parameters" />
+      <module name="eRpc" options="-parameters" />
+      <module name="eRpc-common" options="-parameters" />
+      <module name="eRpc-consumer" options="-parameters" />
+      <module name="eRpc-core" options="-parameters" />
+      <module name="provider-demo" options="-parameters" />
+    </option>
+  </component>
+</project>

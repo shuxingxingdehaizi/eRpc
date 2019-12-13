@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages= {"**.org.ethan.**"})
 public class ConsumerDemoApplication {
 	public static void main(String[] args) {
-		MDCUtil.setTraceId();
+		MDCUtil.getAndsetTraceId();
 		SpringApplication.run(ConsumerDemoApplication.class, args);
 	}
 }
